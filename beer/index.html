@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>啤酒工业化生产 · 化工三传一反与控制工程课件</title>
+<script>
+window.MathJax = {
+  tex: {inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']]},
+  svg: {fontCache: 'global'}
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{
+  --c1:#1a1f3a;--c2:#2c3e60;--c3:#c89028;--c4:#e6b54a;--c5:#f5f0e6;--c6:#fff;--c7:#3a7d5e;
+  --t1:#2a2a2a;--t2:#555;--t3:#888;--bg:#faf8f3;--line:#d9d2c4;--ac:#c89028;--ac2:#3a7d5e;
+  --fs:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:var(--fs);line-height:1.65;color:var(--t1);background:var(--bg)}
+a{color:var(--ac2);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* 顶部导航 */
+header.top{position:sticky;top:0;z-index:100;background:var(--c1);color:#fff;padding:8px 0;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+header.top h1{font-size:15px;font-weight:600;letter-spacing:.5px}
+header.top h1 span{color:var(--c4)}
+header.top nav{display:flex;gap:2px;flex-wrap:wrap}
+header.top nav a{color:#cbd2e0;font-size:12px;padding:4px 8px;border-radius:4px;transition:.2s}
+header.top nav a:hover{background:var(--c2);color:#fff;text-decoration:none}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--c1) 0%,var(--c2) 100%);color:#fff;padding:28px 0 22px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;background:radial-gradient(circle,rgba(200,144,40,.12),transparent 70%);border-radius:50%}
+.hero h2{font-size:22px;margin-bottom:4px;letter-spacing:1px}
+.hero .sub{font-size:12.5px;color:#aab4c8;margin-bottom:8px}
+.hero .tags{display:flex;gap:6px;flex-wrap:wrap}
+.hero .tags span{background:rgba(255,255,255,.1);border:1px solid rgba(200,144,40,.3);color:var(--c4);font-size:11px;padding:2px 8px;border-radius:10px}
+
+/* 章节 */
+section{padding:22px 0;border-bottom:1px solid var(--line)}
+section h2.sec{font-size:17px;color:var(--c1);border-left:4px solid var(--ac);padding-left:10px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+section h2.sec .num{background:var(--ac);color:#fff;font-size:12px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+section h3{font-size:14.5px;color:var(--c2);margin:14px 0 6px;font-weight:600}
+section h4{font-size:13px;color:var(--ac2);margin:10px 0 4px;font-weight:600}
+p{margin-bottom:6px}
+.small{font-size:12px;color:var(--t2)}
+.tiny{font-size:11px;color:var(--t3)}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:12.5px;background:var(--c6);border-radius:6px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+th{background:var(--c2);color:#fff;padding:6px 8px;text-align:left;font-weight:600}
+td{padding:5px 8px;border-bottom:1px solid var(--line)}
+tr:nth-child(even) td{background:#f7f4ed}
+tr:hover td{background:#fdf9ee}
+.tbl-sm{font-size:11.5px}
+.tbl-sm td,.tbl-sm th{padding:4px 6px}
+
+/* 卡片网格 */
+.grid{display:grid;gap:10px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--c6);border:1px solid var(--line);border-radius:8px;padding:10px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:.2s}
+.card:hover{box-shadow:0 3px 10px rgba(0,0,0,.1);transform:translateY(-1px)}
+.card .ic{font-size:20px;margin-bottom:4px}
+.card h4{margin-top:0}
+.card .num-big{font-size:20px;font-weight:700;color:var(--ac)}
+.stat{text-align:center;padding:8px}
+.stat .v{font-size:18px;font-weight:700;color:var(--ac)}
+.stat .l{font-size:11px;color:var(--t2)}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:5px;top:0;bottom:0;width:2px;background:var(--line)}
+.tl-item{position:relative;margin-bottom:10px;padding-left:14px}
+.tl-item::before{content:"";position:absolute;left:-19px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--ac);border:2px solid #fff;box-shadow:0 0 0 1px var(--ac)}
+.tl-item .yr{font-weight:700;color:var(--c1);font-size:12.5px}
+.tl-item .ev{font-size:12px;color:var(--t2)}
+
+/* 视频 */
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.vid-card{background:var(--c6);border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.vid-card .vid-wrap{position:relative;cursor:pointer;background:#000;aspect-ratio:16/9;overflow:hidden}
+.vid-card .vid-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.vid-card .vid-wrap .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3)}
+.vid-card .vid-wrap .play svg{width:44px;height:44px;fill:#fff;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));transition:.2s}
+.vid-card .vid-wrap:hover .play svg{transform:scale(1.15)}
+.vid-card .vid-wrap .dur{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:1px 5px;border-radius:3px}
+.vid-card .vid-info{padding:7px 9px}
+.vid-card .vid-info .vt{font-size:12.5px;font-weight:600;color:var(--c1);margin-bottom:2px;line-height:1.4}
+.vid-card .vid-info .vd{font-size:11px;color:var(--t3)}
+.vid-frame{display:none;width:100%;aspect-ratio:16/9}
+.vid-frame iframe{width:100%;height:100%;border:0}
+
+/* 小图 */
+.fig-row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.fig-mini{flex:1;min-width:150px;max-width:220px;text-align:center}
+.fig-mini svg{width:100%;height:auto;max-height:140px}
+.fig-mini .cap{font-size:11px;color:var(--t2);margin-top:3px;line-height:1.4}
+
+/* SVG 图 */
+.svg-box{background:var(--c6);border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0;overflow-x:auto}
+.svg-box svg{display:block;margin:0 auto;max-width:100%}
+.svg-cap{text-align:center;font-size:11px;color:var(--t2);margin-top:4px;font-style:italic}
+
+/* 方程 */
+.eq-box{background:#f7f4ed;border:1px solid var(--line);border-left:3px solid var(--ac);border-radius:6px;padding:8px 12px;margin:8px 0;overflow-x:auto}
+.eq-box .ref{font-size:10.5px;color:var(--t3);margin-top:3px;font-style:italic}
+
+/* 提示框 */
+.note{background:#eef5f0;border-left:3px solid var(--ac2);border-radius:4px;padding:8px 10px;margin:8px 0;font-size:12.5px}
+.note .nt{font-weight:600;color:var(--ac2)}
+.warn{background:#fdf6e8;border-left:3px solid var(--ac);border-radius:4px;padding:8px 10px;margin:8px 0;font-size:12.5px}
+
+/* 流程 */
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:10px 0}
+.flow-step{flex:1;min-width:110px;background:var(--c6);border:1px solid var(--line);padding:8px 6px;text-align:center;font-size:11.5px;position:relative;border-radius:6px;margin:2px}
+.flow-step .fn{font-weight:700;color:var(--ac);font-size:12px;display:block;margin-bottom:2px}
+.flow-step .fd{color:var(--t2);font-size:10.5px;line-height:1.3}
+.flow-arrow{text-align:center;color:var(--ac);font-size:16px;align-self:center;padding:0 1px}
+
+/* 代码 */
+pre{background:var(--c1);color:#d4d4d4;padding:10px 12px;border-radius:6px;overflow-x:auto;font-size:11.5px;line-height:1.5;font-family:"SF Mono",Consolas,Monaco,monospace;margin:8px 0}
+pre .kw{color:#569cd6}pre .st{color:#ce9178}pre .cm{color:#6a9955}pre .fn{color:#dcdcaa}
+.code-link{display:inline-flex;align-items:center;gap:6px;background:var(--ac2);color:#fff;padding:6px 14px;border-radius:20px;font-size:12.5px;font-weight:600;transition:.2s}
+.code-link:hover{background:#2d6349;text-decoration:none}
+
+/* 图片 */
+.img-box{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:8px 0;background:#fff}
+.img-box img{width:100%;display:block}
+.img-box .cap{padding:5px 9px;font-size:11px;color:var(--t2);background:#f7f4ed;font-style:italic}
+
+/* 折叠 */
+details{margin:6px 0;background:var(--c6);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+summary{padding:7px 10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--c2);user-select:none;list-style:none;display:flex;align-items:center;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"▸";color:var(--ac);transition:.2s}
+details[open] summary::after{transform:rotate(90deg)}
+details .det-body{padding:8px 10px;border-top:1px solid var(--line)}
+
+/* footer */
+footer{background:var(--c1);color:#aab4c8;padding:16px 0;text-align:center;font-size:11px}
+footer a{color:var(--c4)}
+
+/* 响应式 */
+@media(max-width:768px){
+  :root{--fs:13px}
+  .hero h2{font-size:18px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .g3 .card,.g4 .card{min-width:0}
+  header.top nav a{font-size:11px;padding:3px 5px}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg);padding:2px 0}
+  section h2.sec{font-size:15px}
+  .grid-2col-mobile{grid-template-columns:1fr!important}
+  .fig-mini{max-width:100%}
+}
+@media(max-width:480px){
+  :root{--fs:12.5px}
+  .hero{padding:18px 0}
+  .hero h2{font-size:16px}
+  .stat .v{font-size:16px}
+  table{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>🍺 啤酒工业化生产 · <span>化工三传一反与控制工程</span></h1>
+    <nav>
+      <a href="#s1">①背景</a>
+      <a href="#s2">②综述</a>
+      <a href="#s3">③机理</a>
+      <a href="#s4">④建模</a>
+      <a href="#s5">⑤控制</a>
+      <a href="#s6">⑥优化</a>
+      <a href="#dl">下载</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h2>从一杯啤酒读懂化工核心原理</h2>
+    <p class="sub">以啤酒工业化全流程为载体，串联动量传递 · 热量传递 · 质量传递 · 化学反应（"三传一反"）与过程控制工程</p>
+    <div class="tags">
+      <span>动量传递</span><span>热量传递</span><span>质量传递</span><span>反应动力学</span><span>批次控制</span><span>系统优化</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 1. 背景 ==================== -->
+<section id="s1">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">1</span>背景：啤酒的发明历史、全球销售与行业趋势</h2>
+
+    <h3>1.1 发明简史</h3>
+    <div class="fig-row" style="flex-wrap:wrap;gap:10px">
+      <!-- 图1: 苏美尔泥板 -->
+      <div class="fig-mini" style="flex:1;min-width:160px;max-width:260px">
+        <div style="width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:6px;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.1)">
+          <img src="figures/history/history_1_sumerian_beer.png" alt="苏美尔啤酒泥板" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+        </div>
+        <p class="cap">图1 苏美尔泥板·啤酒配给记录<br>已知最早的啤酒文字记载（约公元前6000年）</p>
+      </div>
+      <!-- 图2: 中世纪修道院酿造 -->
+      <div class="fig-mini" style="flex:1;min-width:160px;max-width:260px">
+        <div style="width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:6px;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.1)">
+          <img src="figures/history/history_2_medieval_brewing.png" alt="中世纪修道院酿造啤酒" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+        </div>
+        <p class="cap">图2 中世纪修道院酿造<br>修士改进工艺·引入啤酒花（约公元8世纪）</p>
+      </div>
+      <!-- 图3: 1516纯净法 -->
+      <div class="fig-mini" style="flex:1;min-width:160px;max-width:260px">
+        <div style="width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:6px;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.1)">
+          <img src="figures/history/history_3_reinheitsgebot.png" alt="1516年啤酒纯净法" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+        </div>
+        <p class="cap">图3 1516年《啤酒纯酿法令》<br>世界最古老食品法规之一·巴伐利亚公国</p>
+      </div>
+      <!-- 图4: 工业革命啤酒厂 -->
+      <div class="fig-mini" style="flex:1;min-width:160px;max-width:260px">
+        <div style="width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:6px;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.1)">
+          <img src="figures/history/history_4_industrial_brewery.png" alt="工业革命啤酒厂" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+        </div>
+        <p class="cap">图4 工业革命·19世纪啤酒厂<br>蒸汽动力+林德制冷→全年恒温大规模酿造</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item"><span class="yr">约公元前6000年</span><div class="ev">苏美尔人（美索不达米亚，今伊拉克境内）以发芽大麦酿造"西卡鲁"（Sikaru），黏土板记录配方——公认啤酒起源。</div></div>
+      <div class="tl-item"><span class="yr">约公元前3000年</span><div class="ev">古巴比伦、古埃及将啤酒纳入国家管理；汉穆拉比法典（前18世纪）已有啤酒条款，以大麦、小麦、蜂蜜酿16种啤酒。</div></div>
+      <div class="tl-item"><span class="yr">中世纪（5–15世纪）</span><div class="ev">酿造由家庭转向修道院作坊；修士改进工艺并引入啤酒花（约公元8世纪），啤酒花逐步取代格鲁特（Gruit）成为苦味与防腐剂，奠定现代啤酒基础。</div></div>
+      <div class="tl-item"><span class="yr">1516年</span><div class="ev">巴伐利亚颁布《啤酒纯酿法令》（Reinheitsgebot），规定仅用水、大麦芽、啤酒花（后加酵母）酿造——世界最古老食品法规之一。</div></div>
+      <div class="tl-item"><span class="yr">19世纪</span><div class="ev">工业革命推动规模化：蒸汽糖化锅、制冷机（Linde，1873）、巴氏杀菌（Pasteur，1860s）、纯种酵母培养（Hansen，1883）。圆柱圆锥发酵罐（CCV）与底面发酵拉格普及。</div></div>
+      <div class="tl-item"><span class="yr">20–21世纪</span><div class="ev">全球连片化大生产、PLC/DCS自动化控制；2010年代起精酿运动兴起，低醇/无醇、果味、个性化成为新赛道。</div></div>
+    </div>
+
+    <div class="vid-grid" style="margin-top:10px">
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1j441127rV" onclick="playVid(this)">
+          <img src="https://i0.hdslb.com/bfs/archive/0a0b0c0d0e0f.jpg" alt="" onerror="this.style.display='none'">
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="dur">58:59</span>
+        </div>
+        <div class="vid-info"><div class="vt">纪录片：啤酒的奥秘（双语字幕）</div><div class="vd">啤酒历史与酿造全揭秘 · 纪录片之家</div></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1K3411y7Xb" onclick="playVid(this)">
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="dur">23:32</span>
+        </div>
+        <div class="vid-info"><div class="vt">国产啤酒的120年沉浮</div><div class="vd">中国啤酒工业发展史 · 知危编辑部</div></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1Wx411F7KP" onclick="playVid(this)">
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="dur">45:03</span>
+        </div>
+        <div class="vid-info"><div class="vt">喜力啤酒如何酿造·超级工厂</div><div class="vd">国家地理 · 现代工业化生产</div></div>
+      </div>
+    </div>
+
+    <h3>1.2 全球销售概况</h3>
+    <div class="grid g4">
+      <div class="card stat"><div class="v">≈1.93亿吨</div><div class="l">2023年全球产量</div></div>
+      <div class="card stat"><div class="v">~6500亿美元</div><div class="l">全球市场规模</div></div>
+      <div class="card stat"><div class="v">中国第一</div><div class="l">最大生产/消费国</div></div>
+      <div class="card stat"><div class="v">≈270亿美元</div><div class="l">2025无醇啤酒市场</div></div>
+    </div>
+    <table class="tbl-sm" style="margin-top:8px">
+      <tr><th>排名</th><th>国家/地区</th><th>年产量（万吨，约）</th><th>特点</th></tr>
+      <tr><td>1</td><td>中国</td><td>~3560</td><td>全球最大，集中度高（华润、青啤、百威、燕京）</td></tr>
+      <tr><td>2</td><td>美国</td><td>~2100</td><td>精酿啤酒占份额~25%，品类最丰富</td></tr>
+      <tr><td>3</td><td>巴西</td><td>~1450</td><td>热带拉格主导，人均消费高</td></tr>
+      <tr><td>4</td><td>墨西哥</td><td>~1400</td><td>出口大国（科罗娜、莫德罗）</td></tr>
+      <tr><td>5</td><td>德国</td><td>~850</td><td>纯酿法令、啤酒花之乡、品类传统</td></tr>
+      <tr><td>6</td><td>俄罗斯</td><td>~750</td><td>拉格主导，市场波动大</td></tr>
+    </table>
+
+    <h3>1.3 行业发展趋势</h3>
+    <div class="grid g3">
+      <div class="card"><div class="ic">🌿</div><h4>健康化·低/无醇</h4><p class="small">全球无醇啤酒2020–2024市场规模从30亿增至120亿元；真空蒸馏脱醇技术使酒精度降至&lt;0.05%。</p></div>
+      <div class="card"><div class="ic">🍺</div><h4>精酿多元化</h4><p class="small">2024全球精酿市场约882亿美元；艾尔（Ales）占比近半。果味啤酒五年复合增速25%+。</p></div>
+      <div class="card"><div class="ic">🏭</div><h4>智能与绿色制造</h4><p class="small">DCS+MES+AI数字孪生、热能回收、水耗降至&lt;3 L/L啤酒，碳足迹全生命周期管理。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. 综述 ==================== -->
+<section id="s2">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">2</span>综述：工业化啤酒全流程制作过程</h2>
+    <p>工业化啤酒生产以<strong>大麦芽、大米/玉米（辅料）、啤酒花、水、酵母</strong>为原料，经制麦—糖化—过滤—煮沸—冷却—发酵—储酒—过滤—灌装—杀菌—检验等单元构成连续生产链。各单元均对应"三传一反"中的特定传递与反应过程。</p>
+
+    <div class="svg-box">
+      <svg viewBox="0 0 1100 100" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+        <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#c89028"/></marker></defs>
+        <g font-size="10" text-anchor="middle">
+          <rect x="5" y="35" width="78" height="30" rx="4" fill="#2c3e60"/><text x="44" y="54" fill="#fff">原料筛选</text>
+          <line x1="85" y1="50" x2="100" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="103" y="35" width="68" height="30" rx="4" fill="#2c3e60"/><text x="137" y="54" fill="#fff">粉碎麦芽</text>
+          <line x1="173" y1="50" x2="188" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="191" y="35" width="68" height="30" rx="4" fill="#c89028"/><text x="225" y="54" fill="#fff">糖化</text>
+          <line x1="261" y1="50" x2="276" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="279" y="35" width="68" height="30" rx="4" fill="#2c3e60"/><text x="313" y="54" fill="#fff">过滤麦汁</text>
+          <line x1="349" y1="50" x2="364" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="367" y="35" width="78" height="30" rx="4" fill="#c89028"/><text x="406" y="54" fill="#fff">加花煮沸</text>
+          <line x1="447" y1="50" x2="462" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="465" y="35" width="68" height="30" rx="4" fill="#2c3e60"/><text x="499" y="54" fill="#fff">回旋除杂</text>
+          <line x1="535" y1="50" x2="550" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="553" y="35" width="68" height="30" rx="4" fill="#3a7d5e"/><text x="587" y="54" fill="#fff">冷却</text>
+          <line x1="623" y1="50" x2="638" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="641" y="35" width="68" height="30" rx="4" fill="#c89028"/><text x="675" y="54" fill="#fff">主发酵</text>
+          <line x1="711" y1="50" x2="726" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="729" y="35" width="68" height="30" rx="4" fill="#3a7d5e"/><text x="763" y="54" fill="#fff">低温储酒</text>
+          <line x1="799" y1="50" x2="814" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="817" y="35" width="68" height="30" rx="4" fill="#2c3e60"/><text x="851" y="54" fill="#fff">精滤</text>
+          <line x1="887" y1="50" x2="902" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="905" y="35" width="68" height="30" rx="4" fill="#2c3e60"/><text x="939" y="54" fill="#fff">加压灌装</text>
+          <line x1="975" y1="50" x2="990" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="993" y="35" width="78" height="30" rx="4" fill="#c89028"/><text x="1032" y="54" fill="#fff">巴氏杀菌</text>
+          <line x1="1073" y1="50" x2="1088" y2="50" stroke="#c89028" stroke-width="1.5" marker-end="url(#arr)"/>
+        </g>
+        <text x="44" y="85" font-size="8.5" fill="#888" text-anchor="middle">大麦/大米/酒花</text>
+        <text x="225" y="85" font-size="8.5" fill="#888" text-anchor="middle">62–68℃酶解</text>
+        <text x="406" y="85" font-size="8.5" fill="#888" text-anchor="middle">100℃异构化</text>
+        <text x="675" y="85" font-size="8.5" fill="#888" text-anchor="middle">10℃酵母</text>
+        <text x="763" y="85" font-size="8.5" fill="#888" text-anchor="middle">0–2℃熟化</text>
+        <text x="1032" y="85" font-size="8.5" fill="#888" text-anchor="middle">60℃15min</text>
+      </svg>
+      <p class="svg-cap">图2-1 工业化啤酒生产全流程（黄色=相变/反应关键单元，绿色=传热单元，蓝色=物理分离单元）</p>
+    </div>
+
+    <h3>2.1 原料筛选</h3>
+    <table class="tbl-sm">
+      <tr><th>原料</th><th>作用</th><th>质量要求</th><th>对应传递/反应</th></tr>
+      <tr><td>大麦芽</td><td>淀粉+酶源，色香主体</td><td>糖化力&gt;250°WK，浸出率&gt;80%</td><td>反应（酶水解）</td></tr>
+      <tr><td>大米/玉米</td><td>辅料，提供可发酵糖，清爽口感</td><td>淀粉&gt;75%，脂肪低</td><td>反应（糊化）</td></tr>
+      <tr><td>啤酒花</td><td>苦味（α-酸异构）、香气、防腐</td><td>α-酸5–15%，贮藏指数&lt;0.4</td><td>反应（异构化）</td></tr>
+      <tr><td>水</td><td>占成品90%+，影响风味</td><td>硬度适中，余氯=0</td><td>质量传递介质</td></tr>
+      <tr><td>酵母</td><td>乙醇发酵核心微生物</td><td>纯种、活力&gt;95%</td><td>反应（生物催化）</td></tr>
+    </table>
+
+    <h3>2.2 粉碎与糖化</h3>
+    <p class="small">麦芽粉碎（对辊/湿法）控制皮壳完整以提高过滤效率。糖化在<strong>62–68℃</strong>下利用麦芽自身α-淀粉酶与β-淀粉酶将淀粉水解为麦芽糖、麦芽三糖、葡萄糖等可发酵糖；辅料需预先糊化（70–90℃）。</p>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1AT4y1z7uC" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">04:38</span></div>
+        <div class="vid-info"><div class="vt">啤酒工厂的糖化过程</div><div class="vd">从麦汁到发酵 · 纪录片之家</div></div>
+      </div>
+    </div>
+
+    <h3>2.3 过滤麦汁</h3>
+    <p class="small">糖化醪经过滤槽（Lauter tun）利用麦皮作天然滤层，得澄清麦汁；洗糟水（76–78℃）回收残糖。<strong>质量传递+过滤分离</strong>。</p>
+
+    <h3>2.4 加酒花煮沸与回旋除杂</h3>
+    <p class="small">麦汁<strong>煮沸（100℃，60–90 min）</strong>加入酒花：α-酸异构化为异α-酸（苦味），挥发不良风味，凝固蛋白质（热凝固物）。回旋沉淀槽（Whirlpool）离心分离热凝固物——<strong>动量传递（旋流）</strong>。</p>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1MV4y1F7i8" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">21:25</span></div>
+        <div class="vid-info"><div class="vt">与啤酒花相遇（上）</div><div class="vd">酒花添加与煮沸工艺 · 小岛发酵俱乐部</div></div>
+      </div>
+    </div>
+
+    <h3>2.5 冷却与接种</h3>
+    <p class="small">薄板换热器将热麦汁从~95℃冷至发酵温度（拉格<strong>8–10℃</strong>，艾尔15–20℃），同时充氧至8–12 mg/L供酵母增殖——<strong>热量传递+气液传质</strong>。</p>
+
+    <h3>2.6 主发酵</h3>
+    <p class="small">酵母在圆柱圆锥发酵罐（CCV）内将糖转化为乙醇与CO₂，同时生成酯类、高级醇等风味物质。主发酵5–10天，分迟缓期、对数期、稳定期。<strong>核心反应工程单元</strong>（详见第3–6章）。</p>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1Cj411q71P" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">11:28</span></div>
+        <div class="vid-info"><div class="vt">走进工厂：精酿啤酒如何制作</div><div class="vd">发酵与酵母管理 · 硬核拆解</div></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV13G4y187zB" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">03:35</span></div>
+        <div class="vid-info"><div class="vt">走进超级工厂·啤酒酿造全过程</div><div class="vd">大规模工业化发酵 · 天哥扯影</div></div>
+      </div>
+    </div>
+
+    <h3>2.7 低温储酒（熟化）</h3>
+    <p class="small">降温至<strong>0–2℃储酒7–14天</strong>（拉格源自德语 Lager=储藏），酵母沉降至锥底，双乙酰还原、风味成熟、CO₂饱和。<strong>热量传递+相分离</strong>。</p>
+
+    <h3>2.8 过滤与灌装</h3>
+    <p class="small">硅藻土/纸板精滤至浊度&lt;0.5 EBC。灌装采用<strong>等压灌装</strong>（先充CO₂背压，避免溶氧与泡沫），玻璃瓶/易拉罐/Keg桶。<strong>动量传递+多相传质</strong>。</p>
+    <div class="vid-grid">
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV114411978V" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">04:31</span></div>
+        <div class="vid-info"><div class="vt">啤酒罐装的过程</div><div class="vd">灌装生产线实拍 · 中蕊世纪</div></div>
+      </div>
+      <div class="vid-card">
+        <div class="vid-wrap" data-bv="BV1me411N7bm" onclick="playVid(this)"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="dur">07:14</span></div>
+        <div class="vid-info"><div class="vt">啤酒瓶生产过程</div><div class="vd">包装材料制造 · 解压小窗</div></div>
+      </div>
+    </div>
+
+    <h3>2.9 巴氏杀菌与检验入库</h3>
+    <p class="small">隧道式巴氏杀菌（<strong>60–62℃，15–20 min</strong>，PU值15–30）灭活残留酵母与杂菌。检验理化指标（酒精度、原麦汁浓度、色度、苦味值BU、CO₂）、微生物合格后入库。</p>
+
+    <div class="note"><span class="nt">三传一反映射：</span>糖化=反应（酶催化）；过滤/回旋=动量传递；煮沸/冷却/储酒=热量传递；充氧/CO₂饱和=质量传递；发酵=生物化学反应。整个流程正是"三传一反"的集成工程。</div>
+  </div>
+</section>
+
+<!-- ==================== 3. 机理 ==================== -->
+<section id="s3">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">3</span>机理：工业级发酵过程工艺分析与机理描述</h2>
+
+    <h3>3.1 发酵罐结构与流场</h3>
+    <div class="svg-box">
+      <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="beer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6b54a"/><stop offset="1" stop-color="#c89028"/></linearGradient></defs>
+        <!-- 罐体 -->
+        <rect x="180" y="30" width="140" height="260" rx="4" fill="#d9d2c4" stroke="#5a5a5a" stroke-width="2"/>
+        <polygon points="180,290 250,340 320,290" fill="#d9d2c4" stroke="#5a5a5a" stroke-width="2"/>
+        <!-- 液面 -->
+        <rect x="182" y="70" width="136" height="222" fill="url(#beer)" opacity="0.7"/>
+        <line x1="182" y1="70" x2="318" y2="70" stroke="#8a6a2a" stroke-width="1.5"/>
+        <!-- 夹套 -->
+        <rect x="168" y="60" width="10" height="200" fill="#5a9fc8" opacity="0.6"/>
+        <rect x="322" y="60" width="10" height="200" fill="#5a9fc8" opacity="0.6"/>
+        <text x="150" y="100" font-size="10" fill="#3a7d9f" text-anchor="end">冷媒进</text>
+        <text x="340" y="255" font-size="10" fill="#3a7d9f">冷媒出</text>
+        <!-- 顶部 -->
+        <rect x="175" y="24" width="150" height="8" fill="#888"/>
+        <rect x="240" y="10" width="20" height="16" fill="#888"/>
+        <text x="250" y="8" font-size="9" fill="#555" text-anchor="middle">CO₂排</text>
+        <!-- 底阀 -->
+        <rect x="244" y="340" width="12" height="14" fill="#888"/>
+        <text x="262" y="352" font-size="9" fill="#555">酵母排放</text>
+        <!-- 进料 -->
+        <rect x="120" y="120" width="60" height="8" fill="#5a5a5a"/>
+        <text x="115" y="118" font-size="9" fill="#555" text-anchor="end">麦汁进</text>
+        <!-- 标注 -->
+        <line x1="320" y1="100" x2="370" y2="100" stroke="#c89028" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="375" y="103" font-size="10" fill="#555">液面（气液界面）</text>
+        <line x1="320" y1="200" x2="370" y2="200" stroke="#c89028" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="375" y="203" font-size="10" fill="#555">主流区（反应主体）</text>
+        <line x1="250" y1="320" x2="370" y2="320" stroke="#c89028" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="375" y="323" font-size="10" fill="#555">锥底（酵母沉降）</text>
+        <line x1="168" y1="150" x2="100" y2="150" stroke="#3a7d9f" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="95" y="153" font-size="10" fill="#3a7d9f" text-anchor="end">夹套（传热控制）</text>
+        <!-- 气泡 -->
+        <circle cx="220" cy="120" r="3" fill="#fff" opacity="0.7"/>
+        <circle cx="260" cy="180" r="4" fill="#fff" opacity="0.7"/>
+        <circle cx="290" cy="220" r="3" fill="#fff" opacity="0.7"/>
+        <circle cx="230" cy="260" r="3" fill="#fff" opacity="0.7"/>
+        <text x="210" y="250" font-size="9" fill="#fff">CO₂↑</text>
+        <!-- 酵母 -->
+        <circle cx="240" cy="305" r="2" fill="#8a6a2a"/>
+        <circle cx="255" cy="310" r="2" fill="#8a6a2a"/>
+        <circle cx="265" cy="315" r="2" fill="#8a6a2a"/>
+        <text x="130" y="35" font-size="11" font-weight="bold" fill="#1a1f3a">圆柱圆锥发酵罐 (CCV)</text>
+      </svg>
+      <p class="svg-cap">图3-1 圆柱圆锥发酵罐（CCV）结构与三传过程示意：夹套传热、CO₂气泡气液传质、锥底固液分离</p>
+    </div>
+
+    <h3>3.2 主发酵中的"三传一反"</h3>
+    <table class="tbl-sm">
+      <tr><th>过程</th><th>机理</th><th>关键方程/参数</th></tr>
+      <tr><td>热量传递</td><td>夹套冷媒带走发酵放热（~1.34×10⁵ J/mol 糖），维持恒温</td><td>Q = UA·ΔT·θ；发酵放热 ΔH</td></tr>
+      <tr><td>质量传递</td><td>CO₂气泡上升→气液界面传质；溶氧供给酵母增殖</td><td>dC_L/dt = k_La(C*_L − C_L)</td></tr>
+      <tr><td>动量传递</td><td>CO₂气泡驱动自然对流，强化混合与传热传质</td><td>瑞利数 Ra = gβΔTL³/(να)</td></tr>
+      <tr><td>化学反应</td><td>酵母糖酵解：C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂（EMP途径）</td><td>Monod + 产物抑制动力学</td></tr>
+    </table>
+
+    <h3>3.3 反应动力学机理</h3>
+    <h4>① 比生长速率 — Monod方程 + Luong产物抑制</h4>
+    <div class="eq-box">
+      $$\mu = \mu_{\max}\cdot\frac{S}{K_s + S}\cdot\left(1-\frac{P}{P_{\max}}\right)^n,\quad P<P_{\max}$$
+      <div class="ref">Monod J. (1949) Ann Rev Microbiol 3:371-394；产物抑制项见 Luong JHT (1985) Biotechnol Bioeng 27:280-285</div>
+    </div>
+    <table class="tbl-sm">
+      <tr><th>符号</th><th>定义</th><th>单位</th><th>典型值</th></tr>
+      <tr><td>μ</td><td>酵母比生长速率</td><td>h⁻¹</td><td>0.02–0.06</td></tr>
+      <tr><td>μ_max</td><td>最大比生长速率（温度相关）</td><td>h⁻¹</td><td>0.04（10℃）</td></tr>
+      <tr><td>S</td><td>限制性底物（可发酵糖）浓度</td><td>g/L</td><td>0–120</td></tr>
+      <tr><td>K_s</td><td>Monod半饱和常数</td><td>g/L</td><td>0.1–1.0</td></tr>
+      <tr><td>P</td><td>产物（乙醇）浓度</td><td>g/L</td><td>0–80</td></tr>
+      <tr><td>P_max</td><td>酵母最大耐受乙醇浓度</td><td>g/L</td><td>80–110</td></tr>
+      <tr><td>n</td><td>产物抑制指数</td><td>—</td><td>1</td></tr>
+    </table>
+
+    <h4>② 细胞生长与衰亡</h4>
+    <div class="eq-box">
+      $$\frac{dX}{dt} = \mu\cdot X - k_d\cdot X$$
+      <div class="ref">X为酵母细胞浓度(g/L)；k_d为衰亡系数(h⁻¹)，反映营养耗尽与乙醇毒性下的细胞死亡</div>
+    </div>
+
+    <h4>③ 底物消耗 — Luedeking-Piret形式</h4>
+    <div class="eq-box">
+      $$\frac{dS}{dt} = -\frac{1}{Y_{X/S}}\mu X - m_s X$$
+      <div class="ref">Luedeking R, Piret EL (1959) J Biochem Microbial Technol Eng 1:393-412。Y_{X/S}为菌体对底物表观得率(g/g)，m_s为维持系数 g/(g·h)</div>
+    </div>
+
+    <h4>④ 产物生成 — Luedeking-Piret模型</h4>
+    <div class="eq-box">
+      $$\frac{dP}{dt} = (\alpha\mu + \beta)\cdot X$$
+      <div class="ref">α为生长相关产物得率系数(g/g)，β为非生长相关产物得率系数(h⁻¹)。啤酒发酵属于混合型：生长偶联+非生长偶联并存</div>
+    </div>
+
+    <h4>⑤ CO₂生成（化学计量）</h4>
+    <div class="eq-box">
+      $$\frac{dCO_2}{dt} = Y_{P/CO_2}\cdot\frac{dP}{dt},\quad C_6H_{12}O_6\rightarrow 2C_2H_5OH + 2CO_2$$
+      <div class="ref">理论 Y_{P/CO₂} = M(CO₂)/M(EtOH) = 88/92 ≈ 0.957</div>
+    </div>
+
+    <h4>⑥ 温度效应 — Arrhenius修正</h4>
+    <div class="eq-box">
+      $$\mu_{\max}(T) = \mu_{\max,ref}\cdot\exp\left[-\frac{E_a}{R}\left(\frac{1}{T}-\frac{1}{T_{ref}}\right)\right]$$
+      <div class="ref">E_a表观活化能(J/mol)；R=8.314 J/(mol·K)；T_ref参考温度(K)。生物反应典型E_a=40–80 kJ/mol</div>
+    </div>
+
+    <h3>3.4 传质机理 — 气液氧传质</h3>
+    <div class="eq-box">
+      $$\frac{dC_L}{dt} = k_La\,(C_L^* - C_L) - q_{O_2}\cdot X$$
+      <div class="ref">k_La为体积氧传质系数(h⁻¹)，C_L*为饱和溶氧，q_{O₂}为比耗氧速率。接种前充氧至8–12 mg/L以支撑酵母对数生长</div>
+    </div>
+
+    <div class="note"><span class="nt">教学要点：</span>Monod方程描述<strong>底物限制</strong>下微生物生长（对应"一反"中反应动力学）；Luong项体现<strong>产物抑制</strong>（乙醇积累反馈抑制）；Luedeking-Piret将底物消耗与产物生成解耦为生长相关与非生长相关——这是生化反应工程区别于一般化学反应工程的精髓。</div>
+  </div>
+</section>
+
+<!-- ==================== 4. 建模 ==================== -->
+<section id="s4">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">4</span>建模：工业级发酵过程动态建模与灵敏度分析</h2>
+
+    <h3>4.1 ODE系统模型</h3>
+    <p>将第3章机理方程组装为四元常微分方程组，描述酵母X、底物S、产物P、CO₂随时间演化：</p>
+    <div class="eq-box">
+      $$\begin{cases}\dot X = \mu(S,P,T)\,X - k_d X\\[3pt]\dot S = -\dfrac{1}{Y_{X/S}}\mu X - m_s X\\[6pt]\dot P = (\alpha\mu+\beta)X\\[3pt]\dot{\dot{CO_2}} = Y_{P/CO_2}\,\dot P\end{cases}$$
+    </div>
+
+    <h3>4.2 参数与初值</h3>
+    <table class="tbl-sm">
+      <tr><th>参数</th><th>值</th><th>说明</th></tr>
+      <tr><td>μ_max</td><td>0.04 h⁻¹</td><td>10℃拉格参考值（Brányik et al., 2005）</td></tr>
+      <tr><td>K_s</td><td>0.5 g/L</td><td>糖代谢典型半饱和常数</td></tr>
+      <tr><td>P_max</td><td>80 g/L</td><td>酿酒酵母耐受上限（Luong, 1985）</td></tr>
+      <tr><td>Y_{X/S}</td><td>0.14 g/g</td><td>菌体对底物得率，0.10–0.18</td></tr>
+      <tr><td>m_s</td><td>0.01 g/(g·h)</td><td>维持系数</td></tr>
+      <tr><td>α / β</td><td>3.8 / 0.02 h⁻¹</td><td>Luedeking-Piret产物得率系数</td></tr>
+      <tr><td>k_d</td><td>0.001 h⁻¹</td><td>衰亡系数</td></tr>
+      <tr><td>E_a</td><td>50 kJ/mol</td><td>表观活化能</td></tr>
+      <tr><td>X₀/S₀/P₀</td><td>2 / 120 / 0 g/L</td><td>12°P麦汁，接种2 g/L</td></tr>
+    </table>
+
+    <h3>4.3 数值求解（RK45）</h3>
+    <p class="small">采用 <code>scipy.integrate.solve_ivp</code>（显式Runge-Kutta，rtol=1e-8）在0–168 h区间积分。下方为模型核心代码片段：</p>
+    <pre><span class="kw">def</span> <span class="fn">model_odes</span>(t, y, p):
+    X, S, P, CO2 = y
+    <span class="cm"># Monod + Luong产物抑制</span>
+    mu = p[<span class="st">'mu_max'</span>] * S/(p[<span class="st">'Ks'</span>]+S) * max(0, 1-P/p[<span class="st">'Pmax'</span>])**p[<span class="st">'n'</span>]
+    mu *= arrhenius_factor(T, p)  <span class="cm"># 温度修正</span>
+    dX  = mu*X - p[<span class="st">'kd'</span>]*X
+    dS  = -mu*X/p[<span class="st">'Yxs'</span>] - p[<span class="st">'ms'</span>]*X  <span class="cm"># 底物耗尽时置零</span>
+    dP  = (p[<span class="st">'alpha'</span>]*mu + p[<span class="st">'beta'</span>])*X
+    dCO2= p[<span class="st">'Ypco2'</span>]*dP
+    <span class="kw">return</span> [dX, dS, dP, dCO2]
+
+sol = solve_ivp(model_odes, [0,168], y0, args=(p,), method=<span class="st">'RK45'</span>, rtol=1e-8)</pre>
+
+    <h3>4.4 动态仿真结果</h3>
+    <div class="img-box">
+      <img src="figures/fig1_dynamics.png" alt="发酵动态曲线" loading="lazy">
+      <div class="cap">图4-1 基准工况（10℃, μmax=0.04 h⁻¹）下X/S/P/CO₂随时间演化。糖在第110 h左右耗尽，对应发酵完成；乙醇持续累积至~97 g/L。</div>
+    </div>
+    <div class="grid g4">
+      <div class="card stat"><div class="v">~97 g/L</div><div class="l">最终乙醇浓度</div></div>
+      <div class="card stat"><div class="v">~110 h</div><div class="l">发酵完成时间</div></div>
+      <div class="card stat"><div class="v">15.9 g/L</div><div class="l">最大细胞浓度</div></div>
+      <div class="card stat"><div class="v">~0 g/L</div><div class="l">残糖</div></div>
+    </div>
+    <div class="warn"><strong>教学说明：</strong>本模型乙醇浓度偏高（对应ABV≈12%），高于工业拉格实际（4–5% ABV）。原因是教学模型简化了糖组成（全部按可发酵糖计）与产物抑制反馈。工业实际中12°P麦汁仅约60–70%糖可发酵，且风味副产物（酯、高级醇）竞争碳流。模型结构正确，参数需按实际工况标定。</div>
+
+    <h3>4.5 灵敏度分析</h3>
+    <p class="small">对5个关键参数做±20%、±50%扰动，考察对最终乙醇浓度P_end的影响（相对变化率）：</p>
+    <table class="tbl-sm">
+      <tr><th>参数</th><th>-50%</th><th>-20%</th><th>基准</th><th>+20%</th><th>+50%</th><th>灵敏度</th></tr>
+      <tr><td><strong>P_max</strong></td><td>-44.7%</td><td>-17.4%</td><td>0</td><td>+5.1%</td><td>+7.0%</td><td style="color:#c0392b">★★★★★</td></tr>
+      <tr><td><strong>Y_{X/S}</strong></td><td>-39.7%</td><td>-12.4%</td><td>0</td><td>+0.3%</td><td>+0.4%</td><td style="color:#c0392b">★★★★</td></tr>
+      <tr><td><strong>μ_max</strong></td><td>-27.5%</td><td>-7.7%</td><td>0</td><td>+5.2%</td><td>+9.7%</td><td style="color:#e67e22">★★★★</td></tr>
+      <tr><td><strong>T (℃)</strong></td><td>-13.6%</td><td>-5.1%</td><td>0</td><td>+4.4%</td><td>+9.0%</td><td style="color:#e67e22">★★★</td></tr>
+      <tr><td>K_s</td><td>+0.3%</td><td>+0.1%</td><td>0</td><td>-0.1%</td><td>-0.3%</td><td>★</td></tr>
+    </table>
+
+    <div class="img-box">
+      <img src="figures/fig4_sensitivity_bar.png" alt="Tornado灵敏度图" loading="lazy">
+      <div class="cap">图4-2 Tornado龙卷风图——各参数对P_end的灵敏度排序。P_max与Y_{X/S}主导。</div>
+    </div>
+
+    <div class="grid g2">
+      <div class="img-box">
+        <img src="figures/fig2_sensitivity_mu_max.png" alt="μmax灵敏度" loading="lazy">
+        <div class="cap">图4-3 μmax变化对P(t)的影响</div>
+      </div>
+      <div class="img-box">
+        <img src="figures/fig3_sensitivity_temperature.png" alt="温度灵敏度" loading="lazy">
+        <div class="cap">图4-4 温度变化对P(t)的影响</div>
+      </div>
+    </div>
+
+    <div class="img-box">
+      <img src="figures/fig5_phase.png" alt="相图" loading="lazy">
+      <div class="cap">图4-5 P-S相图：乙醇生成与底物消耗的耦合轨迹</div>
+    </div>
+
+    <div class="note">
+      <p><span class="nt">关键结论：</span></p>
+      <p>1. <strong>P_max（产物耐受）</strong>最敏感——选育耐高乙醇酵母菌株是提升发酵效率的根本途径。</p>
+      <p>2. <strong>Y_{X/S}（菌体得率）</strong>影响显著且非对称——得率降低会"浪费"碳源于菌体而非产物，需控制接种量与溶氧。</p>
+      <p>3. <strong>μ_max与温度T强耦合</strong>——温度升高加速发酵但风味劣化，体现经济性与品质的权衡（见第6章）。</p>
+      <p>4. <strong>K_s几乎无影响</strong>——说明工业浓度远超半饱和常数，处于零级动力学区，底物不构成限制。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. 控制 ==================== -->
+<section id="s5">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">5</span>控制：工业级发酵批次过程控制系统分析</h2>
+
+    <h3>5.1 批次过程特点</h3>
+    <p>啤酒发酵是典型的<strong>批次（间歇）过程</strong>：物料一次性投入，状态随时间演化，无稳态操作点。控制目标是在保证风味品质前提下，按预设温度-时间轨线完成发酵，缩短周期。</p>
+    <table class="tbl-sm">
+      <tr><th>特征</th><th>表现</th><th>控制挑战</th></tr>
+      <tr><td>时变非线性</td><td>μ、q_p随S、P、T变化</td><td>需轨迹跟踪而非定值控制</td></tr>
+      <tr><td>大时滞</td><td>酵母代谢响应慢（小时级）</td><td>反馈控制需预测补偿</td></tr>
+      <tr><td>关键变量不可测</td><td>糖、乙醇在线难测</td><td>需软测量/状态估计</td></tr>
+      <tr><td>重复性好</td><td>批次间工艺固定</td><td>适合批次间迭代学习控制</td></tr>
+    </table>
+
+    <h3>5.2 控制系统架构</h3>
+    <div class="svg-box">
+      <svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#555"/></marker></defs>
+        <!-- 层级 -->
+        <rect x="20" y="20" width="160" height="40" rx="6" fill="#1a1f3a"/><text x="100" y="45" fill="#fff" font-size="12" text-anchor="middle" font-weight="bold">ERP/MES 计划层</text>
+        <rect x="220" y="20" width="160" height="40" rx="6" fill="#2c3e60"/><text x="300" y="45" fill="#fff" font-size="12" text-anchor="middle" font-weight="bold">批次管理（S88）</text>
+        <rect x="420" y="20" width="160" height="40" rx="6" fill="#c89028"/><text x="500" y="45" fill="#fff" font-size="12" text-anchor="middle" font-weight="bold">APC/MPC 优化层</text>
+        <rect x="620" y="20" width="160" height="40" rx="6" fill="#3a7d5e"/><text x="700" y="45" fill="#fff" font-size="12" text-anchor="middle" font-weight="bold">DCS/PLC 基础控制</text>
+        <line x1="180" y1="40" x2="220" y2="40" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <line x1="380" y1="40" x2="420" y2="40" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <line x1="580" y1="40" x2="620" y2="40" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+        
+        <!-- 基础控制回路 -->
+        <text x="450" y="95" font-size="11" fill="#1a1f3a" font-weight="bold">基础控制回路（PID）</text>
+        <rect x="450" y="105" width="180" height="28" rx="4" fill="#3a7d5e"/><text x="540" y="124" fill="#fff" font-size="11" text-anchor="middle">温度PID（夹套冷媒阀）</text>
+        <rect x="450" y="140" width="180" height="28" rx="4" fill="#3a7d5e"/><text x="540" y="159" fill="#fff" font-size="11" text-anchor="middle">压力PID（CO₂排放阀）</text>
+        <rect x="450" y="175" width="180" height="28" rx="4" fill="#3a7d5e"/><text x="540" y="194" fill="#fff" font-size="11" text-anchor="middle">液位/流量PID</text>
+
+        <!-- 发酵罐 -->
+        <rect x="700" y="110" width="80" height="120" rx="4" fill="#d9d2c4" stroke="#5a5a5a" stroke-width="1.5"/>
+        <polygon points="700,230 740,260 780,230" fill="#d9d2c4" stroke="#5a5a5a" stroke-width="1.5"/>
+        <rect x="702" y="140" width="76" height="90" fill="#c89028" opacity="0.6"/>
+        <text x="740" y="105" font-size="11" fill="#1a1f3a" text-anchor="middle" font-weight="bold">发酵罐</text>
+        <text x="740" y="280" font-size="10" fill="#555" text-anchor="middle">被控对象</text>
+
+        <!-- 反馈 -->
+        <line x1="780" y1="170" x2="820" y2="170" stroke="#555" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <text x="825" y="165" font-size="10" fill="#555">T,P,DO</text>
+        <text x="825" y="178" font-size="10" fill="#555">在线传感</text>
+        <path d="M820,190 Q820,240 540,240 Q260,240 260,175" stroke="#555" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <text x="390" y="252" font-size="10" fill="#555">反馈测量</text>
+
+        <!-- APC层 -->
+        <text x="100" y="95" font-size="11" fill="#1a1f3a" font-weight="bold">先进过程控制（APC）</text>
+        <rect x="40" y="105" width="160" height="28" rx="4" fill="#c89028"/><text x="120" y="124" fill="#fff" font-size="10.5" text-anchor="middle">温度轨迹MPC</text>
+        <rect x="40" y="140" width="160" height="28" rx="4" fill="#c89028"/><text x="120" y="159" fill="#fff" font-size="10.5" text-anchor="middle">软测量（糖/醇估计）</text>
+        <rect x="40" y="175" width="160" height="28" rx="4" fill="#c89028"/><text x="120" y="194" fill="#fff" font-size="10.5" text-anchor="middle">迭代学习控制（ILC）</text>
+        <line x1="200" y1="160" x2="440" y2="155" stroke="#c89028" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#arr2)"/>
+        <text x="320" y="150" font-size="10" fill="#c89028">设定值下发</text>
+      </svg>
+      <p class="svg-cap">图5-1 啤酒发酵多层级控制系统架构：计划→批次管理→APC优化→DCS基础回路→被控对象</p>
+    </div>
+
+    <h3>5.3 温度轨线跟踪控制</h3>
+    <p class="small">主发酵温度需按工艺轨线变化（如迟缓期10℃→对数期12℃→还原期14℃→降温0℃）。采用<strong>串级PID+前馈</strong>：</p>
+    <div class="eq-box">
+      $$u(t) = K_p\left[e(t) + \frac{1}{T_i}\int_0^t e\,d\tau + T_d\frac{de}{dt}\right] + K_f\,d(t)$$
+      <div class="ref">e(t) = T_sp(t) - T(t) 为温度偏差；d(t)为发酵放热前馈量；K_f为前馈增益</div>
+    </div>
+
+    <h3>5.4 软测量与状态估计</h3>
+    <p class="small">糖度与乙醇浓度难以在线测量，用<strong>扩展卡尔曼滤波（EKF）</strong>融合离线化验与模型预测：</p>
+    <div class="eq-box">
+      $$\hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k\,(z_k - h(\hat{x}_{k|k-1}))$$
+      <div class="ref">x=[X,S,P]ᵀ状态向量；z_k为离线化验（糖度/酒精度，每8h一次）；K_k为卡尔曼增益</div>
+    </div>
+
+    <h3>5.5 批次间迭代学习控制（ILC）</h3>
+    <p class="small">利用批次重复性，将上一批误差用于修正本批设定值，逐步收敛：</p>
+    <div class="eq-box">
+      $$u_{j+1}(t) = u_j(t) + \Gamma\, e_j(t)$$
+      <div class="ref">j为批次索引；Γ为学习增益矩阵。批次间渐进消除温度轨线跟踪误差</div>
+    </div>
+
+    <div class="note"><span class="nt">控制工程要点：</span>发酵控制体现了<strong>层级化、模型驱动、数据融合</strong>的现代过程控制思想——基础PID保稳定，APC/MPC求最优，ILC利用批次重复性持续改进，软测量补足在线感知缺口。</div>
+  </div>
+</section>
+
+<!-- ==================== 6. 优化 ==================== -->
+<section id="s6">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">6</span>优化：品质-效率-经济性的系统优化</h2>
+
+    <h3>6.1 优化问题表述</h3>
+    <div class="eq-box">
+      $$\min_{T(t),\,X_0,\,t_f}\; J = \underbrace{w_1\frac{t_f}{t_{f,ref}}}_{\text{效率}} + \underbrace{w_2\frac{C_{energy}}{C_{ref}}}_{\text{经济}} + \underbrace{w_3\,F_{defect}}_{\text{品质惩罚}}$$
+      <div class="ref">约束：T∈[8,16]℃；双乙酰≤0.1 mg/L；酯类/高级醇在风味窗内；残糖≤2 g/L；P∈[35,45]g/L</div>
+    </div>
+
+    <h3>6.2 优化变量与策略</h3>
+    <table class="tbl-sm">
+      <tr><th>决策变量</th><th>优化方向</th><th>对品质影响</th><th>对效率/经济影响</th></tr>
+      <tr><td>主发酵温度T(t)</td><td>↑加速但控上限</td><td>过高→高级醇↑、酯失衡</td><td>↑5℃周期缩短~30%</td></tr>
+      <tr><td>接种量X₀</td><td>↑缩短迟缓期</td><td>过高→酵母自溶味</td><td>↑0.5 g/L周期-8%</td></tr>
+      <tr><td>溶氧DO</td><td>适度供给</td><td>过高→氧化味、酯↓</td><td>充氧能耗</td></tr>
+      <tr><td>压力(加压发酵)</td><td>0.1–0.2 MPa</td><td>抑制酯生成，CO₂饱和快</td><td>减少CO₂回收成本</td></tr>
+      <tr><td>降温速率</td><td>快降省时</td><td>过快→酵母应激双乙酰↑</td><td>冷媒能耗↑</td></tr>
+    </table>
+
+    <h3>6.3 Pareto多目标优化</h3>
+    <div class="svg-box">
+      <svg viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- 坐标 -->
+        <line x1="50" y1="240" x2="450" y2="240" stroke="#555" stroke-width="1.5"/>
+        <line x1="50" y1="240" x2="50" y2="20" stroke="#555" stroke-width="1.5"/>
+        <text x="250" y="265" font-size="11" fill="#555" text-anchor="middle">发酵时间 t_f (h)</text>
+        <text x="20" y="130" font-size="11" fill="#555" text-anchor="middle" transform="rotate(-90 20 130)">能耗成本</text>
+        <!-- Pareto前沿 -->
+        <path d="M90,60 Q150,90 210,130 T360,200" fill="none" stroke="#c89028" stroke-width="2.5"/>
+        <!-- 点 -->
+        <circle cx="90" cy="60" r="5" fill="#3a7d5e"/><text x="98" y="55" font-size="9.5" fill="#3a7d5e">A 低温高品质</text>
+        <circle cx="180" cy="110" r="5" fill="#c89028"/><text x="188" y="108" font-size="9.5" fill="#c89028">B 折中</text>
+        <circle cx="210" cy="135" r="5" fill="#c89028"/><text x="218" y="138" font-size="9.5" fill="#c89028">C 折中</text>
+        <circle cx="360" cy="200" r="5" fill="#c0392b"/><text x="300" y="215" font-size="9.5" fill="#c0392b">D 高温快发低质</text>
+        <!-- 可行域 -->
+        <path d="M90,60 Q150,90 210,130 T360,200 L360,240 L90,240 Z" fill="#c89028" opacity="0.08"/>
+        <text x="200" y="230" font-size="9" fill="#aaa">可行域</text>
+        <text x="245" y="95" font-size="10" fill="#c89028" font-weight="bold">Pareto前沿</text>
+        <line x1="90" y1="60" x2="360" y2="60" stroke="#aaa" stroke-dasharray="3,3" stroke-width="0.8"/>
+        <text x="370" y="63" font-size="9" fill="#aaa">品质约束边界</text>
+      </svg>
+      <p class="svg-cap">图6-1 发酵时间-能耗成本的Pareto前沿：A（低温高品质低效）→D（高温快发低质高效），B/C为折中最优解</p>
+    </div>
+
+    <h3>6.4 工业优化实践</h3>
+    <div class="grid g3">
+      <div class="card"><div class="ic">🌡️</div><h4>变温轨线优化</h4><p class="small">用动态规划求解最优T(t)轨线，在对数期适度升温缩短周期，还原期升温促双乙酰还原，末期快降温。较恒温节能12–18%。</p></div>
+      <div class="card"><div class="ic">🧬</div><h4>菌株工程</h4><p class="small">选育高P_max菌株（第4章灵敏度首位），耐高乙醇且风味稳定，直接提升发酵上限与效率。</p></div>
+      <div class="card"><div class="ic">♻️</div><h4>热集成与CO₂回收</h4><p class="small">发酵放热→预热清洗水；CO₂回收净化回用灌装背压，降低采购成本，全厂水耗&lt;3 L/L啤酒。</p></div>
+    </div>
+
+    <h3>6.5 数字化与AI优化</h3>
+    <p class="small">现代啤酒厂部署<strong>数字孪生</strong>：实时发酵模型+在线传感+EKF状态估计，结合历史批次数据训练LSTM/Transformer预测发酵终点与风味指标，实现"预测-决策-执行"闭环，单批次综合成本下降5–10%。</p>
+
+    <div class="note"><span class="nt">系统优化要点：</span>以<strong>品质为硬约束</strong>（风味窗、残糖、酒精度），在<strong>效率</strong>（发酵周期）与<strong>经济性</strong>（能耗、原料、CO₂）间求Pareto平衡。第4章灵敏度分析已指明优化杠杆优先级：菌株（P_max）> 得率（Y_{X/S}）> 温度-速率协同。</div>
+  </div>
+</section>
+
+<!-- ==================== 下载 ==================== -->
+<section id="dl">
+  <div class="wrap">
+    <h2 class="sec"><span class="num">📎</span>模型Python代码下载</h2>
+    <p>第4章动态建模与灵敏度分析的完整Python脚本，包含Monod-Luong动力学、Luedeking-Piret产物生成、Arrhenius温度修正、RK45求解、五参数灵敏度扫描与5幅可视化图表。可直接运行（需 numpy/scipy/matplotlib）。</p>
+    <pre><span class="cm"># 运行方式</span>
+pip install numpy scipy matplotlib
+python beer_fermentation_model.py
+<span class="cm"># 输出：控制台关键指标 + figures/ 目录下5张PNG</span></pre>
+    <div style="margin:10px 0">
+      <a class="code-link" href="beer_fermentation_model.py" download>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        下载 beer_fermentation_model.py（约30KB）
+      </a>
+    </div>
+    <details>
+      <summary>查看代码结构概览</summary>
+      <div class="det-body">
+        <table class="tbl-sm">
+          <tr><th>函数</th><th>功能</th></tr>
+          <tr><td><code>monod_luong_mu</code></td><td>计算Monod+Luong产物抑制比生长速率</td></tr>
+          <tr><td><code>arrhenius_factor</code></td><td>Arrhenius温度修正因子</td></tr>
+          <tr><td><code>model_odes</code></td><td>ODE右端函数（X,S,P,CO₂）</td></tr>
+          <tr><td><code>simulate</code></td><td>solve_ivp(RK45)数值积分</td></tr>
+          <tr><td><code>key_metrics</code></td><td>提取P_end、t_done、X_max等指标</td></tr>
+          <tr><td><code>sensitivity_analysis</code></td><td>五参数±20%/±50%扫描</td></tr>
+          <tr><td><code>plot_dynamics/plot_*/plot_tornado/plot_phase</code></td><td>5幅图表绘制</td></tr>
+        </table>
+        <p class="small">参考文献：[1] Monod 1949; [2] Luong 1985; [3] Luedeking-Piret 1959; [4] Brányik et al. 2005 J Inst Brew 111:122-134</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>啤酒工业化生产 · 化工三传一反与控制工程教学课件 | 视频来源：Bilibili（仅教学引用）</p>
+    <p>© 教学用途 · 模型参数已简化，工业应用需按实际工况标定</p>
+  </div>
+</footer>
+
+<script>
+// B站视频点击播放
+function playVid(el){
+  var bv = el.getAttribute('data-bv');
+  if(!bv) return;
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.bilibili.com/player.html?bvid='+bv+'&autoplay=1&high_quality=1&danmaku=0';
+  iframe.allowFullscreen = true;
+  iframe.scrolling = 'no';
+  iframe.style.width='100%';
+  iframe.style.height='100%';
+  iframe.style.border='0';
+  el.style.display='none';
+  el.parentNode.appendChild(iframe);
+  el.parentNode.style.position='relative';
+}
+// 锚点导航关闭移动端菜单（可选）
+</script>
+</body>
+</html>
