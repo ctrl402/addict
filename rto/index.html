@@ -68,7 +68,7 @@
   <div class="wrap">
     <h1>实时优化（RTO）技术综述<br><span style="font-size:20px;font-weight:400">从大规模联立方程稳态严格机理模型到工业落地</span></h1>
     <p>面向过程工业的实时优化 / 在线优化（Real-Time Optimization）系统性梳理</p>
-    <p class="meta">资料基础：本室 RTO 专题库（40+ 篇学位论文、30+ 篇期刊/会议论文、ARC 行业报告与中文专著）&nbsp;·&nbsp;编写于 2026-07</p>
+    <p class="meta">资料基础：本室 RTO 专题库（40+ 篇学位论文、30+ 篇期刊/会议论文、ARC 行业报告与中文专著）+ 公开市场报告与厂商案例&nbsp;·&nbsp;编写于 2026-07（市场与工业界数据更新至 2024–2025）</p>
   </div>
 </header>
 
@@ -142,21 +142,45 @@
     <!-- ============ 2 工业界 ============ -->
     <h2 id="s2">二、国内外工业界的实施情况和效果 <span class="tag">附网页链接</span></h2>
 
-    <h3>2.1 市场规模与供应格局</h3>
+    <h3>2.1 市场规模与供应格局（2024–2025 最新）</h3>
     <p>
-      据 ARC Advisory Group 的多份市场研究，先进过程控制与在线优化（RPO，含 APC + RTO + 动态仿真培训）市场：
+      RTO 属于"先进过程控制与优化（APC/APO）"大类，公开市场报告多以 <b>APC（Advanced Process Control）</b> 为口径统计，RTO/在线优化是其中价值最高的软件子层。不同机构<strong>统计口径差异很大</strong>（是否含硬件/DCS、服务与实施），因此规模数字需分层看：
     </p>
-    <ul>
-      <li><strong>2005 年约 6.7 亿美元 → 2010 年突破 10 亿美元</strong>（Plant Engineering 转述）；</li>
-      <li><strong>2008 年约 10 亿美元 → 2013 年突破 15 亿美元，CAGR≈9%</strong>（Food Engineering 转述；食品饮料细分占比 &lt;10%，主体在炼化/石化）。</li>
-    </ul>
-    <p>五大供应商长期占据主导地位：<strong>AspenTech、AVEVA（含原 SimSci/ROMEO）、Emerson、Honeywell、Yokogawa</strong>。</p>
+    <table>
+      <tr><th>口径</th><th>2024 规模</th><th>预测</th><th>CAGR</th><th>来源</th></tr>
+      <tr>
+        <td>广义 APC（含硬件+软件+服务）</td>
+        <td>约 <b>202 亿美元</b></td>
+        <td>2025 约 218 亿 → 2029 约 <b>312 亿美元</b></td>
+        <td>7.9%→9.4%</td>
+        <td><a class="ext" href="https://speed.researchandmarkets.com/reports/5792996/advanced-process-control-global-market-report" target="_blank" rel="noopener">The Business Research Co. 2025</a></td>
+      </tr>
+      <tr>
+        <td>APC 软件/解决方案</td>
+        <td>约 <b>20.5–23.1 亿美元</b></td>
+        <td>2032 约 <b>50 亿</b> / 2035 约 <b>55.5 亿美元</b></td>
+        <td>9.5%–10.3%</td>
+        <td><a class="ext" href="https://www.kbvresearch.com/advanced-process-control-market/" target="_blank" rel="noopener">KBV 2025</a> · <a class="ext" href="https://www.marketresearchfuture.com/reports/advanced-process-control-market-4805" target="_blank" rel="noopener">MRFuture 2025</a></td>
+      </tr>
+      <tr>
+        <td>狭义 APC 核心软件</td>
+        <td>约 <b>7.85 亿美元</b></td>
+        <td>2033 约 <b>14.3 亿美元</b></td>
+        <td>6.9%</td>
+        <td><a class="ext" href="https://www.marketgrowthreports.com/market-reports/advanced-process-control-apc-market-108785" target="_blank" rel="noopener">Market Growth Reports 2025</a></td>
+      </tr>
+    </table>
+    <p style="margin-top:10px">
+      <b>共识要点</b>：① <strong>北美份额最大（约 36%–38%）</strong>，<strong>亚太增长最快</strong>（中国、印度炼化扩能驱动）；
+      ② <strong>软件占比约 2/3</strong>，服务占比上升；③ 前五大供应商约占 <strong>58%</strong> 份额；
+      ④ 三大新趋势：<strong>AI/机器学习融合、数字孪生、云化（SaaS 已占新装约 31%）</strong>，多变量 MPC 仍是主体、非线性/推断控制增速快。
+    </p>
+    <p>国际主导供应商：<strong>AspenTech、AVEVA（原 SimSci/ROMEO→现 APO）、Honeywell、Emerson、Yokogawa+KBC、ABB、Siemens、Rockwell、Schneider</strong>。</p>
     <div class="card">
-      <b>行业报告与媒体（可点开）：</b>
-      <ul style="margin:6px 0">
-        <li><a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">ARC Advisory Group 官网</a> — APC/RTO 市场研究与 Perspectives 文章</li>
-        <li><a class="ext" href="https://www.plantengineering.com/" target="_blank" rel="noopener">Plant Engineering</a> / <a class="ext" href="https://www.foodengineeringmag.com/" target="_blank" rel="noopener">Food Engineering</a> — 对 ARC RPO 市场预测的转述报道</li>
-      </ul>
+      <b>历史沿革（供对照）：</b>据 ARC Advisory Group 早年研究，含 APC+RTO+动态仿真培训的 RPO 市场约
+      <b>2005 年 6.7 亿 → 2010 年破 10 亿</b>、<b>2008 年 10 亿 → 2013 年破 15 亿美元（CAGR≈9%）</b>——
+      与今日 20 亿美元级软件市场对比，可见近十年 RTO/APC 已从"炼化专用工具"扩展为全过程工业的数字化标配。
+      来源：<a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">ARC Advisory Group</a>。
     </div>
 
     <h3>2.2 主流商业软件</h3>
@@ -164,15 +188,15 @@
       <tr><th>厂商</th><th>产品</th><th>特点</th><th>链接</th></tr>
       <tr>
         <td>AspenTech</td>
-        <td>Aspen Plus Optimizer / Aspen Online / RT-OPT</td>
-        <td>与 Aspen Plus 严格模型深度集成；联立方程稳态优化；炼化装置覆盖面广</td>
-        <td><a class="ext" href="https://www.aspentech.com/en/products/optimization" target="_blank" rel="noopener">产品页</a></td>
+        <td>Aspen GDOT（动态 RTO）/ Aspen DMC3（自适应 APC）/ Aspen Online</td>
+        <td>GDOT 打通"计划-调度-APC"闭环多单元动态优化，工业 AI + 动态数据调和；DMC3 内嵌 AVA 顾问，线性+非线性一体建模。宣称吞吐 +2~5%、收率 +3%、能耗 −10%、质量标准差 −50%+</td>
+        <td><a class="ext" href="https://www.aspentech.com/en/products/msc/aspen-gdot" target="_blank" rel="noopener">GDOT</a> · <a class="ext" href="https://www.aspentech.com/en/products/msc/aspen-dmc3" target="_blank" rel="noopener">DMC3</a></td>
       </tr>
       <tr>
         <td>AVEVA</td>
-        <td>AVEVA ROMeo（含反应器模型组合：胺、氨、加氢裂化、FCC 等）</td>
-        <td>装置级严格模型库 + 优化；在炼油/化肥有众多 Reference Case</td>
-        <td><a class="ext" href="https://www.aveva.com/en/products/romeo/" target="_blank" rel="noopener">产品页</a></td>
+        <td>AVEVA Process Optimization / APO（原 ROMeo）</td>
+        <td>基于<strong>联立方程</strong>的严格机理在线闭环优化，集严格模拟+数据调理+过失检测+经济优化+绩效监测于一体；<strong>全球实施 400+ 项目（亚太 200+）</strong></td>
+        <td><a class="ext" href="https://www.aveva.com/en/products/process-optimization/" target="_blank" rel="noopener">产品页</a></td>
       </tr>
       <tr>
         <td>Honeywell</td>
@@ -194,23 +218,37 @@
       </tr>
     </table>
 
-    <h3>2.3 国际典型案例</h3>
+    <h3>2.3 国际典型案例（含 2024 最新）</h3>
     <ul>
-      <li><b>Petrobras（巴西国家石油）</b>：在多家炼厂大规模部署 RTO，Liporace 等（PSE 2009）系统总结了其 RTO 经验——从数据协调、模型维护到投用率管理的全周期实践，是工业 RTO 最完整的公开案例之一。</li>
-      <li><b>Aramco（沙特阿美）利雅得加氢处理装置（HCU）</b>：Yokogawa + KBC 的 RT-OPT 成功故事，报道了显著的能耗/收率改善（本室已存档其 Success Story PDF）。</li>
-      <li><b>炼油全流程</b>：原油蒸馏、催化裂化（FCC）、加氢裂化、烷基化等是 RTO 最成熟的落地点；氨厂、烯烃、LNG 接收站亦有成熟应用（本室含相关硕士论文：LNG 接收站稳态建模与操作优化、FCCU 虚拟装置 RTO 评估）。</li>
+      <li><b>Borouge（阿布扎比）3600 KTA 乙烯装置</b>：部署 <b>Aspen GDOT</b> 动态实时优化，协调多套装置最大化产量、降能耗、减原料损失，使运行"显著贴近最优计划"。GDOT 因此获 AspenTech "Breakthrough Products" 与 "Best Digital Technology" 奖（<a class="ext" href="https://www.aspentech.com/en/products/msc/aspen-gdot" target="_blank" rel="noopener">案例</a>）。</li>
+      <li><b>CEPSA（西班牙）炼厂氢气网络</b>：用 Aspen GDOT 优化全厂氢网，<b>降低氢损失、减少 CO₂ 排放</b>；<b>Heide（德国）</b>、<b>Marathon（美国）</b> 亦用 GDOT 优化中间馏分/石脑油系统。</li>
+      <li><b>Saudi Aramco（沙特阿美）</b>：通过<strong>全厂范围实时优化</strong>提升整体利润率（AVEVA 下游案例）；<b>MOL（匈牙利）</b>借 AVEVA PI System 实现约 <b>5 亿美元</b>利润提升；<b>BP</b> 将复杂决策从 7 小时缩短到 3 分钟。<a class="ext" href="https://www.aveva.com/en/industries/oil-gas/downstream/" target="_blank" rel="noopener">AVEVA 下游</a></li>
+      <li><b>AVEVA APO（ROMeo）典型装置年化效益</b>（厂商口径）：500 万吨/年常减压 <b>800–1300 万元</b>、140 万吨/年催化裂化 <b>700–1400 万元</b>、120 万吨/年连续重整 <b>800–1700 万元</b>、100 万吨/年乙烯 <b>1500–4300 万元</b>。</li>
+      <li><b>Petrobras（巴西）</b>：多家炼厂大规模部署 RTO，Liporace 等（PSE 2009）系统总结了数据协调→模型维护→投用率管理的全周期实践，是工业 RTO 最完整的公开案例之一。</li>
+      <li><b>炼油全流程</b>：原油蒸馏、FCC、加氢裂化、烷基化是 RTO 最成熟的落地点；氨厂、烯烃、LNG 接收站亦有成熟应用（本室含相关论文：LNG 接收站稳态建模与操作优化、FCCU 虚拟装置 RTO 评估）。</li>
     </ul>
 
-    <h3>2.4 国内实施情况</h3>
+    <h3>2.4 国内实施情况（2023–2025 最新）</h3>
     <p>
-      中国 RTO 起步于 1990 年代：中石化率先试点，最早的部署由 Setpoint 公司（1996 年并入 AspenTech）完成；
-      此后 Honeywell、AspenTech 在国内炼化装置上实施了<strong>数百个项目</strong>。但据 ARC 早年的观察，
-      到 2005 年前后国内"真正良好运行"的 RTO 仅约三分之一，瓶颈多在<strong>模型维护、数据质量与参数更新闭环</strong>。
+      <b>起步与历史：</b>中国 RTO 起步于 1990 年代，中石化率先试点，最早部署由 Setpoint（1996 并入 AspenTech）完成；此后 Honeywell、AspenTech 在国内炼化装置实施了数百个项目。但据 ARC 早年观察，到 2005 年前后国内"真正良好运行"的 RTO 仅约<strong>三分之一</strong>，瓶颈多在模型维护、数据质量与参数更新闭环。
     </p>
     <p>
-      近十余年国产化加速：<strong>中控（Supcon）、和利时（HollySys）、中石化宁波技术中心（PCITC）</strong>等已推出自主 RTO/APC 产品，
-      在石化、电力、煤化工等场景落地。学术侧，<strong>浙江大学邵之江团队</strong>长期深耕"复杂流程系统实时模拟与优化"与"简约空间 SQP"，
-      形成从理论（降维 SQP 算法）到工业软件的方法论体系，培养了本室收藏的十余篇相关学位论文。
+      <b>市场格局（IDC 2023）：</b>据 IDC《中国石油化工智能工厂解决方案市场份额, 2023》，中国石化智能工厂解决方案市场规模<strong>超 36 亿元</strong>，RTO/在线优化是其中的高价值软件层。份额前七：<strong>石化盈科（23.9%，近 1/4，居首）、中控技术、昆仑数智</strong>为前三，和利时、施耐德、西门子、霍尼韦尔列四至七（<a class="ext" href="https://www.ccin.com.cn/detail/c50fad5c9478ab0fd71c536d5b98b71e" target="_blank" rel="noopener">中化新网/IDC</a>）。
+    </p>
+    <p>
+      <b>政策驱动：</b>工信部 2024 年《工业重点行业领域设备更新和技术改造指南》提出，到 <strong>2027 年</strong>数字化转型成熟度 3 级及以上企业占比达 15%+、4 级及以上达 7%+、关键工序数控化率 85%+。而目前成熟度 3 级及以上的数字化炼厂<strong>不足 10%</strong>、4 级寥寥，且大量国有大中型炼厂设备运行超 30 年——<strong>RTO/APC 的国产化改造空间巨大</strong>。
+    </p>
+    <div class="card">
+      <b>2023–2024 国内标杆案例（可点开）：</b>
+      <ul style="margin:6px 0">
+        <li><b>扬子石化 3# 常减压 RTO</b>（中国石化<strong>首批炼油 RTO 试点</strong>之一，联合石科院）：800 万吨/年、年加工原油近 20 种；2022-07 启动 → 2023-11 上线 → 2024-04 验收。基于<strong>严格机理建模</strong>覆盖原油/换热网络/初馏塔/常压塔/减压塔，实现"工况跟踪—全局优化—闭环自调"的"自动驾驶"，平均优化周期仅 2 小时，负荷 1.6–2.1 万吨/天、沥青/焦化料/渣加料 3 种模式均稳定运行；RTO 结果下发 APC 执行（<a class="ext" href="http://www.sinopecgroup.com/group/000/000/067/67396.shtml" target="_blank" rel="noopener">中国石化报</a>）。</li>
+        <li><b>独山子石化 110 万吨/年乙烯 RTO</b>（中石油）：2018-08 实施 → 2021-06 上线，含原料实时协同、裂解炉群负荷动态分配、裂解深度实时优化。效果：<strong>双烯收率 +0.37 个百分点、综合能耗 −1.04%、年直接经济效益 5000 多万元</strong>；两套乙烯装置日产连续 6 个月超 4000 吨创新高，2023 入选工信部智能制造示范工厂（<a class="ext" href="https://finance.sina.com.cn/jjxw/2024-04-24/doc-inasyfqm0668186.shtml" target="_blank" rel="noopener">中国科技网</a>）。</li>
+        <li><b>九江石化</b>（中国石化）：整合常减压、催化裂化机理模型构建<strong>在线实时仿真系统</strong>，芳烃装置以数字孪生 + 5G + IPC/RTO 为"智能大脑"，关键产品收率误差控制在 <strong>1% 以内</strong>（<a class="ext" href="https://paper.people.com.cn/zgnyb/pc/content/202511/24/content_30116857.html" target="_blank" rel="noopener">人民日报能源</a>）。</li>
+        <li><b>金陵石化 2# 重整 AIPC</b>（中控技术 + 石化盈科，2024-09）：多工况自适应 + 周期性操作自动化，相关控制回路<strong>平稳率环比提升超 70%</strong>、灵敏板温度波动降 50%+、人工干预降 90%+（<a class="ext" href="https://www.zidonghua.com.cn/news/brand/62536.html" target="_blank" rel="noopener">中国石化新闻</a>）。</li>
+      </ul>
+    </div>
+    <p>
+      <b>国产供应商与技术演进：</b><strong>石化盈科（PCITC，ProMACE 平台）、中控技术（Supcon，UCS 通用控制系统 / TPT 流程工业时序大模型 / AiPlant，客户含万华化学、广西华谊、湖北三宁、广东石化）、昆仑数智、和利时</strong>等已形成自主 RTO/APC + 智能优化产品线，并加速与 AI 大模型、数字孪生融合。学术侧，<strong>浙江大学邵之江团队</strong>长期深耕"复杂流程系统实时模拟与优化"与"简约空间 SQP"，形成从降维 SQP 理论到工业软件的方法论体系（本室收藏十余篇相关学位论文）。
     </p>
 
     <h3>2.5 实施效果与常见落差</h3>
@@ -367,14 +405,20 @@
 
     <!-- ============ 参考文献 ============ -->
     <h2 id="refs">参考文献与行业链接</h2>
-    <h3>行业链接（厂商 / 机构）</h3>
+    <h3>市场报告（2024–2025）</h3>
     <ol class="refs">
-      <li>ARC Advisory Group — <a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">https://www.arcweb.com/</a>（APC/RTO 市场研究与 Perspectives）</li>
-      <li>AVEVA ROMeo — <a class="ext" href="https://www.aveva.com/en/products/romeo/" target="_blank" rel="noopener">https://www.aveva.com/en/products/romeo/</a></li>
-      <li>AspenTech Optimization — <a class="ext" href="https://www.aspentech.com/en/products/optimization" target="_blank" rel="noopener">https://www.aspentech.com/en/products/optimization</a></li>
-      <li>Honeywell Profit Optimizer — <a class="ext" href="https://www.honeywell.com/us/en/products/process/industrial-software/profit-optimizer" target="_blank" rel="noopener">https://www.honeywell.com/.../profit-optimizer</a></li>
-      <li>Yokogawa — <a class="ext" href="https://www.yokogawa.com/" target="_blank" rel="noopener">https://www.yokogawa.com/</a>；Emerson — <a class="ext" href="https://www.emerson.com/" target="_blank" rel="noopener">https://www.emerson.com/</a></li>
-      <li>Plant Engineering — <a class="ext" href="https://www.plantengineering.com/" target="_blank" rel="noopener">https://www.plantengineering.com/</a>；Food Engineering — <a class="ext" href="https://www.foodengineeringmag.com/" target="_blank" rel="noopener">https://www.foodengineeringmag.com/</a></li>
+      <li>The Business Research Company — <a class="ext" href="https://speed.researchandmarkets.com/reports/5792996/advanced-process-control-global-market-report" target="_blank" rel="noopener">Advanced Process Control Global Market Report 2025</a>（广义 APC：2024 约 202 亿 → 2029 约 312 亿美元）</li>
+      <li>KBV Research — <a class="ext" href="https://www.kbvresearch.com/advanced-process-control-market/" target="_blank" rel="noopener">APC Market 2025–2032</a>（软件口径 2024 约 23 亿 → 2032 约 50 亿美元，CAGR 10.3%）</li>
+      <li>Market Research Future — <a class="ext" href="https://www.marketresearchfuture.com/reports/advanced-process-control-market-4805" target="_blank" rel="noopener">APC Market to 2035</a>（2024 约 20.5 亿 → 2035 约 55.5 亿美元，CAGR 9.48%）</li>
+      <li>IDC —《中国石油化工智能工厂解决方案市场份额, 2023》转述：<a class="ext" href="https://www.ccin.com.cn/detail/c50fad5c9478ab0fd71c536d5b98b71e" target="_blank" rel="noopener">中化新网</a>（市场超 36 亿元；石化盈科 23.9% 居首）</li>
+      <li>ARC Advisory Group — <a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">https://www.arcweb.com/</a>（历史 RPO 市场沿革）</li>
+    </ol>
+    <h3>厂商产品与案例</h3>
+    <ol class="refs">
+      <li>AspenTech — <a class="ext" href="https://www.aspentech.com/en/products/msc/aspen-gdot" target="_blank" rel="noopener">Aspen GDOT</a> · <a class="ext" href="https://www.aspentech.com/en/products/msc/aspen-dmc3" target="_blank" rel="noopener">Aspen DMC3</a>（Borouge / CEPSA / Heide / Marathon 案例）</li>
+      <li>AVEVA — <a class="ext" href="https://www.aveva.com/en/products/process-optimization/" target="_blank" rel="noopener">Process Optimization（原 ROMeo）</a> · <a class="ext" href="https://www.aveva.com/en/industries/oil-gas/downstream/" target="_blank" rel="noopener">下游油气（Aramco / MOL / BP）</a></li>
+      <li>Honeywell Profit Optimizer — <a class="ext" href="https://www.honeywell.com/us/en/products/process/industrial-software/profit-optimizer" target="_blank" rel="noopener">产品页</a>；Yokogawa+KBC — <a class="ext" href="https://www.yokogawa.com/" target="_blank" rel="noopener">yokogawa.com</a>；Emerson — <a class="ext" href="https://www.emerson.com/" target="_blank" rel="noopener">emerson.com</a></li>
+      <li>国内案例：<a class="ext" href="http://www.sinopecgroup.com/group/000/000/067/67396.shtml" target="_blank" rel="noopener">扬子石化 3# 常减压 RTO</a> · <a class="ext" href="https://finance.sina.com.cn/jjxw/2024-04-24/doc-inasyfqm0668186.shtml" target="_blank" rel="noopener">独山子石化乙烯 RTO</a> · <a class="ext" href="https://www.zidonghua.com.cn/news/brand/62536.html" target="_blank" rel="noopener">金陵石化 AIPC</a> · <a class="ext" href="https://paper.people.com.cn/zgnyb/pc/content/202511/24/content_30116857.html" target="_blank" rel="noopener">九江石化在线实时仿真</a></li>
     </ol>
 
     <h3>学术参考文献（节选，本室均存档原文或摘要）</h3>
@@ -408,7 +452,7 @@
 
 <footer>
   本文为面向过程工业 RTO 技术的内部技术综述，内容基于本室 RTO 专题资料库整理编写（截至 2026-07）。
-  市场数据引自 ARC Advisory Group 及其媒体转述；学术贡献按学派与学位论文一手资料归纳。
+  市场数据引自 The Business Research Company / KBV / Market Research Future / IDC（2024–2025）及 ARC 历史沿革；工业案例引自各企业官方与权威媒体报道（2023–2024）；学术贡献按学派与学位论文一手资料归纳。
 </footer>
 </body>
 </html>
