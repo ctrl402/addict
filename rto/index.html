@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实时优化（RTO）技术综述：从严格机理模型到工业落地</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --panel:#ffffff; --ink:#1f2733; --muted:#5b6675;
+    --line:#e3e8ef; --accent:#1a5fb4; --accent2:#0b7a4b; --warn:#b3541e;
+    --code:#f1f4f9;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75; font-size:16px;
+  }
+  header.hero{
+    background:linear-gradient(135deg,#13335c,#1a5fb4); color:#fff; padding:46px 24px 38px;
+  }
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 10px; font-size:30px; line-height:1.3; letter-spacing:.3px}
+  header.hero p{margin:4px 0; color:#dbe7f6; font-size:15px}
+  header.hero .meta{margin-top:14px; font-size:13px; color:#bcd2ec}
+  .layout{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:28px;padding:26px 24px 60px}
+  nav.toc{
+    position:sticky;top:18px;align-self:start;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:16px 14px;font-size:14px;max-height:calc(100vh - 40px);overflow:auto;
+  }
+  nav.toc h4{margin:0 0 8px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  nav.toc ol{margin:0;padding-left:18px}
+  nav.toc li{margin:6px 0}
+  nav.toc a{color:var(--accent);text-decoration:none}
+  nav.toc a:hover{text-decoration:underline}
+  main{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:30px 34px;min-width:0}
+  main h2{
+    margin-top:34px;padding-bottom:8px;border-bottom:2px solid var(--accent);
+    font-size:23px;color:#13335c;scroll-margin-top:18px;
+  }
+  main h3{margin-top:26px;font-size:18px;color:#1a5fb4;scroll-margin-top:18px}
+  main h4{margin-top:18px;font-size:15.5px;color:#34404f}
+  main p{margin:12px 0}
+  main ul,main ol{margin:10px 0 12px;padding-left:24px}
+  main li{margin:6px 0}
+  .lead{font-size:16.5px;color:#34404f;background:var(--code);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 8px 8px 0}
+  code{background:var(--code);padding:1px 6px;border-radius:5px;font-size:13.5px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#13335c}
+  .kw{display:inline-block;background:#eef3fb;color:var(--accent);border:1px solid #d4e2f5;padding:0 7px;border-radius:6px;font-size:13px;margin:2px 2px}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#eef3fb;color:#13335c;font-weight:600}
+  tr:nth-child(even) td{background:#fafbfd}
+  .card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0;background:#fcfdfe}
+  .card b{color:#13335c}
+  .refs{font-size:13.5px;line-height:1.7}
+  .refs li{margin:7px 0}
+  a.ext{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+  a.ext:hover{background:#eef3fb}
+  .tag{font-size:12px;color:#fff;background:var(--accent2);border-radius:20px;padding:1px 9px;margin-left:6px}
+  .note{background:#fff7f0;border:1px solid #f3d9c4;color:#7a3b12;padding:10px 14px;border-radius:8px;font-size:14px;margin:14px 0}
+  footer{max-width:1080px;margin:0 auto;padding:0 24px 50px;color:var(--muted);font-size:13px}
+  @media(max-width:860px){.layout{grid-template-columns:1fr}nav.toc{position:static;max-height:none}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>实时优化（RTO）技术综述<br><span style="font-size:20px;font-weight:400">从大规模联立方程稳态严格机理模型到工业落地</span></h1>
+    <p>面向过程工业的实时优化 / 在线优化（Real-Time Optimization）系统性梳理</p>
+    <p class="meta">资料基础：本室 RTO 专题库（40+ 篇学位论文、30+ 篇期刊/会议论文、ARC 行业报告与中文专著）&nbsp;·&nbsp;编写于 2026-07</p>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc">
+    <h4>目录</h4>
+    <ol>
+      <li><a href="#s1">背景：目的、框架与流程</a></li>
+      <li><a href="#s2">工业界实施与效果</a></li>
+      <li><a href="#s3">学术界创新贡献</a></li>
+      <li><a href="#s4">技术深究：严格模型 + RSQP</a></li>
+      <li><a href="#refs">参考文献与行业链接</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="lead">
+      实时优化（RTO）是过程工业"闭环利润最大化"的核心环节：它位于生产计划调度与先进过程控制（APC/MPC）之间，
+      以严格的稳态机理模型为内核，把"当前工况下经济最优的操作点"实时计算出来并下发给控制器，
+      使装置在原料、产品牌号、环境与设备状态不断变化的情况下，持续逼近经济最优。
+      本文基于本室 RTO 专题库（含 Biegler、Shao、Bonvin/Marchetti、Engell、Naysmith、Yip、Papasavvas 等学派的一手学位论文与专著）撰写。
+    </div>
+
+    <!-- ============ 1 背景 ============ -->
+    <h2 id="s1">一、背景：目的意义、技术框架与流程要点</h2>
+
+    <h3>1.1 目的与意义</h3>
+    <p>
+      过程工业（炼油、石化、化工、化肥、电力、冶金）的利润对操作点高度敏感。一套千万吨级炼油装置，
+      操作点偏离最优 1%，一年就是千万级人民币的损失。传统 APC/MPC 只能把过程"稳"在给定设定值上，
+      而<strong>设定值本身是否经济最优</strong>，需要由 RTO 来回答。RTO 的本质是：
+      在模型—现实存在失配、工况不断扰动的前提下，<strong>周期性地求解一个以经济效益为目标的稳态优化问题</strong>，
+      并把求得的最优操作目标（温度、流量、压力、塔顶/塔底采出等）作为 APC 的新设定值。
+    </p>
+    <p>
+      行业经验表明，成功实施的 RTO 通常带来 <strong>能耗下降 1%–3%、毛利提升 2%–5%</strong>，
+      投资回收期多在 1 年以内（ARC Advisory Group 多份报告口径），是过程工业"存量挖潜"性价比最高的数字化手段之一。
+    </p>
+
+    <h3>1.2 技术框架：分层优化控制体系</h3>
+    <p>RTO 不是孤立模块，而是分层优化控制金字塔的中间层：</p>
+    <table>
+      <tr><th>层级</th><th>时间尺度</th><th>任务</th><th>典型工具</th></tr>
+      <tr><td>计划 / 调度</td><td>天–周</td><td>资源分配、排产、原料与产品决策</td><td>LP / MILP 计划优化</td></tr>
+      <tr><td><b>RTO（实时优化）</b></td><td>小时–班次</td><td>基于严格模型的稳态经济优化，求最优操作点</td><td>联立方程稳态优化器（RSQP 类）</td></tr>
+      <tr><td>APC / MPC</td><td>分钟–秒</td><td>把 RTO 目标稳在约束边界内，抗扰动</td><td>多变量预测控制</td></tr>
+      <tr><td>基础回路控制</td><td>秒</td><td>流量/温度/压力单回路调节</td><td>PID</td></tr>
+    </table>
+    <p>
+      关键信息流是自上而下的<strong>目标传递</strong>与自下而上的<strong>数据汇聚</strong>：
+      现场仪表 → 实时数据库 → RTO（数据整定 + 参数估计 + 优化求解）→ 设定值 → APC → 回路。
+    </p>
+
+    <h3>1.3 流程要点：RTO 的迭代闭环</h3>
+    <p>一个标准 RTO 迭代（周期通常 1–8 小时，依稳态检测而定）由以下环节串联：</p>
+    <div class="card">
+      <b>① 稳态检测（Steady-State Detection）</b>：判断过程是否已进入稳态（滑动窗口方差检验、零阶/一阶假设检验），只有稳态数据才用于优化，避免动态噪声污染。<br>
+      <b>② 数据整定 / 数据协调（Data Reconciliation）</b>：用物料/能量/动量守恒约束，对带噪声、甚至矛盾的测量值做加权最小二乘估计，消除冗余测量冲突、检出粗大误差（gross error）。<br>
+      <b>③ 参数估计 / 模型更新（Parameter Estimation / Model Update）</b>：用协调后的数据反估模型参数（如塔效率、传热系数、动力学常数），使严格模型"贴合"当前装置。<br>
+      <b>④ 稳态经济优化（Steady-State Optimization）</b>：以更新后的严格机理模型为等式约束、以经济效益（利润/能耗）为目标，求最优操作点——<strong>这是 RSQP 等大规模 NLP 求解器大显身手之处</strong>。<br>
+      <b>⑤ 目标计算与下发</b>：将优化变量转化为 APC 可读的设定值，经可行性/合理性校验后下发；同时用"信任窗口（trusted window）"限制单次移动幅度，保障平稳过渡。
+    </div>
+
+    <h3>1.4 两条技术路线</h3>
+    <ul>
+      <li><span class="kw">模型驱动 RTO（Model-based RTO）</span>：依赖完整参数估计使模型贴合现实，再解优化。优点是可解释、能给出最优结构；难点在参数估计收敛性与模型失配。</li>
+      <li><span class="kw">修正自适应 RTO（Modifier Adaptation, MA）</span>：不直接追求参数精确，而是在 KKT 条件上叠加"修正项"（梯度/函数值修正），用实测输入输出直接补偿模型—现实差距，<strong>无需完整参数估计、对稳态检测要求更低</strong>。代表：EPFL Bonvin 组、Marchetti 2009、Oliveira da Silva 2023。</li>
+      <li><span class="kw">免稳态检测 RTO（ROPA 等）</span>：以"持续参数自适应"替代显式稳态检测，适合频繁扰动工况。代表：USP Matias 2018、Carneiro 2020。</li>
+    </ul>
+
+    <!-- ============ 2 工业界 ============ -->
+    <h2 id="s2">二、国内外工业界的实施情况和效果 <span class="tag">附网页链接</span></h2>
+
+    <h3>2.1 市场规模与供应格局</h3>
+    <p>
+      据 ARC Advisory Group 的多份市场研究，先进过程控制与在线优化（RPO，含 APC + RTO + 动态仿真培训）市场：
+    </p>
+    <ul>
+      <li><strong>2005 年约 6.7 亿美元 → 2010 年突破 10 亿美元</strong>（Plant Engineering 转述）；</li>
+      <li><strong>2008 年约 10 亿美元 → 2013 年突破 15 亿美元，CAGR≈9%</strong>（Food Engineering 转述；食品饮料细分占比 &lt;10%，主体在炼化/石化）。</li>
+    </ul>
+    <p>五大供应商长期占据主导地位：<strong>AspenTech、AVEVA（含原 SimSci/ROMEO）、Emerson、Honeywell、Yokogawa</strong>。</p>
+    <div class="card">
+      <b>行业报告与媒体（可点开）：</b>
+      <ul style="margin:6px 0">
+        <li><a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">ARC Advisory Group 官网</a> — APC/RTO 市场研究与 Perspectives 文章</li>
+        <li><a class="ext" href="https://www.plantengineering.com/" target="_blank" rel="noopener">Plant Engineering</a> / <a class="ext" href="https://www.foodengineeringmag.com/" target="_blank" rel="noopener">Food Engineering</a> — 对 ARC RPO 市场预测的转述报道</li>
+      </ul>
+    </div>
+
+    <h3>2.2 主流商业软件</h3>
+    <table>
+      <tr><th>厂商</th><th>产品</th><th>特点</th><th>链接</th></tr>
+      <tr>
+        <td>AspenTech</td>
+        <td>Aspen Plus Optimizer / Aspen Online / RT-OPT</td>
+        <td>与 Aspen Plus 严格模型深度集成；联立方程稳态优化；炼化装置覆盖面广</td>
+        <td><a class="ext" href="https://www.aspentech.com/en/products/optimization" target="_blank" rel="noopener">产品页</a></td>
+      </tr>
+      <tr>
+        <td>AVEVA</td>
+        <td>AVEVA ROMeo（含反应器模型组合：胺、氨、加氢裂化、FCC 等）</td>
+        <td>装置级严格模型库 + 优化；在炼油/化肥有众多 Reference Case</td>
+        <td><a class="ext" href="https://www.aveva.com/en/products/romeo/" target="_blank" rel="noopener">产品页</a></td>
+      </tr>
+      <tr>
+        <td>Honeywell</td>
+        <td>Profit Optimizer / Profit Suite</td>
+        <td>与 Profit Controller（MPC）紧耦合，RTO→MPC 一体化</td>
+        <td><a class="ext" href="https://www.honeywell.com/us/en/products/process/industrial-software/profit-optimizer" target="_blank" rel="noopener">产品页</a></td>
+      </tr>
+      <tr>
+        <td>Yokogawa + KBC</td>
+        <td>Petro-SIM / RT-OPT</td>
+        <td>KBC 严格模型 + Yokogawa 控制；有大量炼化成功案例</td>
+        <td><a class="ext" href="https://www.yokogawa.com/" target="_blank" rel="noopener">官网</a></td>
+      </tr>
+      <tr>
+        <td>Emerson</td>
+        <td>DeltaV + 优化套件</td>
+        <td>与 DCS/APC 一体，适合存量装置改造</td>
+        <td><a class="ext" href="https://www.emerson.com/" target="_blank" rel="noopener">官网</a></td>
+      </tr>
+    </table>
+
+    <h3>2.3 国际典型案例</h3>
+    <ul>
+      <li><b>Petrobras（巴西国家石油）</b>：在多家炼厂大规模部署 RTO，Liporace 等（PSE 2009）系统总结了其 RTO 经验——从数据协调、模型维护到投用率管理的全周期实践，是工业 RTO 最完整的公开案例之一。</li>
+      <li><b>Aramco（沙特阿美）利雅得加氢处理装置（HCU）</b>：Yokogawa + KBC 的 RT-OPT 成功故事，报道了显著的能耗/收率改善（本室已存档其 Success Story PDF）。</li>
+      <li><b>炼油全流程</b>：原油蒸馏、催化裂化（FCC）、加氢裂化、烷基化等是 RTO 最成熟的落地点；氨厂、烯烃、LNG 接收站亦有成熟应用（本室含相关硕士论文：LNG 接收站稳态建模与操作优化、FCCU 虚拟装置 RTO 评估）。</li>
+    </ul>
+
+    <h3>2.4 国内实施情况</h3>
+    <p>
+      中国 RTO 起步于 1990 年代：中石化率先试点，最早的部署由 Setpoint 公司（1996 年并入 AspenTech）完成；
+      此后 Honeywell、AspenTech 在国内炼化装置上实施了<strong>数百个项目</strong>。但据 ARC 早年的观察，
+      到 2005 年前后国内"真正良好运行"的 RTO 仅约三分之一，瓶颈多在<strong>模型维护、数据质量与参数更新闭环</strong>。
+    </p>
+    <p>
+      近十余年国产化加速：<strong>中控（Supcon）、和利时（HollySys）、中石化宁波技术中心（PCITC）</strong>等已推出自主 RTO/APC 产品，
+      在石化、电力、煤化工等场景落地。学术侧，<strong>浙江大学邵之江团队</strong>长期深耕"复杂流程系统实时模拟与优化"与"简约空间 SQP"，
+      形成从理论（降维 SQP 算法）到工业软件的方法论体系，培养了本室收藏的十余篇相关学位论文。
+    </p>
+
+    <h3>2.5 实施效果与常见落差</h3>
+    <p>
+      <strong>成功项目</strong>普遍回报丰厚（能耗 −1%~−3%、毛利 +2%~+5%、回收期 &lt;1 年）；
+      但<strong>失败/闲置项目</strong>同样普遍，根因通常不是优化算法，而是：
+      ① 实时数据质量差、协调与稳态检测失效；② 模型长期不更新（"建完即弃"）；
+      ③ RTO 与 APC 目标脱节；④ 缺少持续运维机制。这正是学术界"修正自适应 / 免稳态检测 / 自主运行"等方向要解决的问题。
+    </p>
+
+    <!-- ============ 3 学术界 ============ -->
+    <h2 id="s3">三、国内外学术界的创新贡献 <span class="tag">附参考文献</span></h2>
+
+    <h3>3.1 大规模优化求解器：从 Reduced Hessian 到 RSQP</h3>
+    <p>
+      RTO 的内核是一个带大规模代数/微分方程约束的 NLP。1980–2000 年代，
+      <strong>Lorenz Biegler（CMU）</strong>系统建立了 reduced-Hessian / reduced-space SQP（RSQP）理论，
+      区分"优化变量"与"模型等式约束"，用零空间法 + BFGS 近似降维 Hessian，使千/万变量级流程优化得以在单机求解
+      （AIChE J 1982 不可行路径 SQP、CCE 1983–1999 一系列 reduced-Hessian / multiplier-free / interior-point 工作，本室均存档）。
+    </p>
+    <p>
+      <strong>邵之江（浙大）</strong>将降维思想推向"简约空间 SQP（Reduced-Space SQP）"并实现工程化，
+      面向在线优化提出计算策略（Shao 等, 1997/1998/1999），成为国内工业 RTO 求解器的算法底座。
+    </p>
+
+    <h3>3.2 稳态检测与数据整定</h3>
+    <p>
+      <strong>Naysmith（Waterloo, 1998）</strong>系统比较了 RTO 中"闭式方程"与"开式方程"两类表述对优化—控制一体化求解的影响，是奠基性文献。
+      <strong>万百五、黄正良《大工业过程计算机在线稳态优化控制》</strong>是国内该方向的经典专著，系统论述稳态优化控制的原理与实现。
+      数据协调（Data Reconciliation）作为 RTO 前置环节，与参数估计耦合，是鲁棒性的第一道关口（本室亦藏清华李博 2001 博士论文专攻数据校正）。
+    </p>
+
+    <h3>3.3 模型更新与参数估计</h3>
+    <p>
+      <strong>Wai San Yip（McMaster, 2002，导师 T. E. Marlin）</strong>的博士论文《Model Updating in Real-Time Optimization》
+      专门研究 RTO 中的模型更新策略，并探讨 RTO 与过程控制的集成。
+      USP 团队（Palacio 2013 数据分析、Menezes 2016 丙烯 VRD 装置 Petrobras 应用）则把参数估计与工业数据实践紧密结合。
+    </p>
+
+    <h3>3.4 修正自适应（Modifier Adaptation, MA）</h3>
+    <p>
+      <strong>Bonvin 团队（EPFL）</strong>提出"自优化控制 + 修正自适应"框架：用实测梯度/函数值修正模型 KKT 条件，使最优解收敛到真实最优，
+      而无需精确参数估计。<strong>Marchetti（EPFL, 2009）</strong>的博士论文《Modifier-adaptation methodology for real-time optimization》是该方向的里程碑。
+      后续 <strong>Oliveira da Silva（Valladolid, 2023）</strong>把 MA 与经济 MPC 融合；<strong>Krishnamoorthy（NTNU/SINTEF, 2019）</strong>研究不确定性下的在线优化与反馈 RTO。
+    </p>
+
+    <h3>3.5 免稳态检测 RTO / ROPA 与 KPI 导向</h3>
+    <p>
+      <strong>Matias（USP, 2018）</strong>提出 ROPA（Persistent Parameter Adaptation），以持续参数自适应替代显式稳态检测；
+      <strong>Carneiro（USP, 2020）</strong>进一步给出 ROPA 在线参数估计实现；<strong>Câmara（UFRJ, 2018）</strong>研究 RTO 的辨识技术；
+      <strong>Santos（UFRGS, 2021）</strong>提出"KPI 导向 RTO（KPI-RTO）"，以业务指标而非纯模型驱动优化目标。
+    </p>
+
+    <h3>3.6 自主运行（Autopilot）与耦合过程</h3>
+    <p>
+      <strong>Papasavvas（Edinburgh, 2018）</strong>的《From Real-Time Optimization Techniques to an Autopilot for Steady-State Processes》
+      主张把 RTO 与控制融合为稳态过程的"自动驾驶"；<strong>Himmel（OvGU Magdeburg, 2021，Sundmacher/Engell/Sager 组）</strong>
+      研究耦合过程的基于优化运行策略；<strong>Serralunga（UNL, 2014）</strong>面向工业过程与能源系统的 RTO。
+    </p>
+
+    <h3>3.7 国内高校团队（补充）</h3>
+    <ul>
+      <li><b>浙江大学（邵之江组）</b>：降维 SQP、在线优化、记忆增强型 RTO（本室收藏江爱朋/王可心/方学毅/陈伟锋/张正江/李健舒/姚科田/羊城/游江洪/刘晨光等十余篇学位论文）。</li>
+      <li><b>清华大学（陈丙珍组）</b>：过程系统工程、数据校正（李博 2001 博士）。</li>
+      <li><b>大连理工、中国石油大学（北京，罗雄麟组）</b>：集成优化、不确定性下在线优化（杨斌博士等）。</li>
+    </ul>
+
+    <!-- ============ 4 技术 ============ -->
+    <h2 id="s4">四、技术深究：基于大规模联立方程稳态严格机理模型的 RTO</h2>
+    <p>
+      本节聚焦用户关注的技术内核——<strong>以大规模联立方程稳态严格机理模型为载体，融合高效鲁棒优化求解、数据整定与参数估计，以 RSQP 为主要求解器</strong>的 RTO 技术栈，以及工程落地中的求解策略与实施技巧。
+    </p>
+
+    <h3>4.1 联立方程稳态严格机理模型（Equation-Oriented, EO）</h3>
+    <p>
+      "严格机理模型"指由质量/能量/动量守恒、相平衡、反应动力学、设备关联等<strong>第一性原理方程</strong>构成的装置全模型。
+      与传统的<strong>序贯模块法（Sequential Modular, SM）</strong>——逐个单元依次计算、靠撕裂流迭代收敛——不同，
+      RTO 内核普遍采用<strong>联立方程法（Equation-Oriented）</strong>：把全装置所有方程联立成一个大型非线性代数系统
+      <code>F(x, y, p) = 0</code>（<code>x</code> 优化/操作变量，<code>y</code> 模型状态/流股变量，<code>p</code> 参数），一次性求解。
+    </p>
+    <p>EO 的优势对 RTO 至关重要：</p>
+    <ul>
+      <li><strong>灵敏度可解析获得</strong>：通过联立方程的 Jacobian，可直接得到目标/约束对操作变量与参数的导数，供 SQP 使用；</li>
+      <li><strong>天然支持优化嵌套</strong>：模型等式即优化约束，无需"外面套一层迭代"；</li>
+      <li><strong>便于分解与并行</strong>：可整体求解，也可按单元/工段分解（-Schur 补/拉格朗日松弛）。</li>
+    </ul>
+
+    <h3>4.2 高效鲁棒优化求解：RSQP 为何是主力</h3>
+    <p>
+      RTO 的 NLP 形如：
+    </p>
+    <div class="card" style="font-family:ui-monospace,monospace;font-size:13.5px">
+      min&nbsp; Φ(x) &nbsp;（经济效益，如利润/能耗）<br>
+      s.t.&nbsp; F(x, y, p) = 0 &nbsp;（联立稳态严格模型，大规模）<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; g(x, y) ≤ 0 &nbsp;（操作/质量/设备约束）<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; x<sub>L</sub> ≤ x ≤ x<sub>H</sub>
+    </div>
+    <p>
+      直接把全部变量（<code>x ∪ y</code>）当优化变量在满空间求解，Hessian 维度爆炸且病态。
+      <strong>RSQP（Reduced-Space SQP）</strong>的核心思想：
+    </p>
+    <ul>
+      <li><strong>变量分离</strong>：把 <code>y</code>（由模型方程隐式决定）从优化变量中"消掉"，只把 <code>x</code> 作为独立优化变量（reduced variables）；</li>
+      <li><strong>零空间法 + 降维 Hessian</strong>：在每次 SQP 迭代，用模型 Jacobian 的零空间把搜索方向投影到可行流形，并用 BFGS 仅在降维空间近似 Hessian（reduced Hessian），规模从"全变量数万"降到"自由度数百"；</li>
+      <li><strong>不可行路径（Infeasible Path）</strong>：允许中间迭代违反模型方程，靠罚函数/约束逐步收紧，比"每步先解算稳态"的 feasible-path 更快更鲁棒（Biegler 1982/1985；Shao 1999 用于在线优化）；</li>
+      <li><strong>内点 / multiplier-free 变体</strong>：对不等式约束多的炼化模型，内点法（Biegler 1999）与免乘子法（Biegler 1998）进一步改善数值稳定性。</li>
+    </ul>
+    <p>这也是 AspenTech、AVEVA ROMeo 等商业 RTO 内核的算法底色——<strong>RSQP 不是某一个软件，而是一类被工业验证的大规模流程 NLP 求解范式</strong>。</p>
+
+    <h3>4.3 数据整定 / 数据协调（Data Reconciliation）</h3>
+    <p>鲁棒性的第一道关。以守恒方程 <code>A·m = 0</code>（<code>m</code> 测量向量，<code>A</code> 关联矩阵）为约束，做加权最小二乘：</p>
+    <div class="card" style="font-family:ui-monospace,monospace;font-size:13.5px">
+      min&nbsp; (m − m̂)<sup>T</sup> W (m − m̂)<br>
+      s.t.&nbsp; A·m̂ = 0
+    </div>
+    <p>
+      要点：① 用测量方差定权 <code>W</code>；② 通过<strong>全局检验</strong>与<strong>节点检验</strong>检出粗大误差（传感器故障/误标定量程）；
+      ③ 对非线性/双线性系统做迭代协调；④ 协调后的数据才是参数估计与优化的可信输入。
+    </p>
+
+    <h3>4.4 参数估计（Parameter Estimation / Model Update）</h3>
+    <p>
+      用协调后的稳态数据反估模型参数 <code>p</code>（塔效率、传热/传质系数、动力学常数、催化剂活性等）：
+    </p>
+    <div class="card" style="font-family:ui-monospace,monospace;font-size:13.5px">
+      min&nbsp; Σ<sub>k</sub> ‖ h(x<sub>k</sub>, y<sub>k</sub>, p) − z<sub>k</sub> ‖²&nbsp; s.t. F(x<sub>k</sub>, y<sub>k</sub>, p)=0
+    </div>
+    <p>
+      该问题常与数据协调耦合（同步协调 + 估计），并受<strong>可辨识性</strong>限制——不是所有参数都能被有限测量唯一确定，
+      这正是 Yip(2002) 等研究"模型更新策略"的动机：何时更新、更新哪些参数、如何避免过拟合噪声。
+    </p>
+
+    <h3>4.5 求解策略谱系</h3>
+    <table>
+      <tr><th>维度</th><th>选项 A</th><th>选项 B</th><th>取舍</th></tr>
+      <tr><td>路径</td><td>可行路径（先满足稳态）</td><td><b>不可行路径（RSQP 常用）</b></td><td>后者更快、对初值更鲁棒</td></tr>
+      <tr><td>空间</td><td>满空间 SQP</td><td><b>降维空间 RSQP</b></td><td>后者 Hessian 维度小、数值更稳</td></tr>
+      <tr><td>建模</td><td>序贯模块 SM</td><td><b>联立方程 EO</b></td><td>EO 导数解析、利于优化</td></tr>
+      <tr><td>模型适配</td><td>完整参数估计</td><td><b>修正自适应 MA / ROPA</b></td><td>MA 弱化稳态检测、抗失配</td></tr>
+      <tr><td>分解</td><td>整体求解</td><td>单元/工段分解（LP/MILP + NLP）</td><td>大模型靠分解收敛</td></tr>
+    </table>
+
+    <h3>4.6 工业实施技巧（来自一线与专著的"know-how"）</h3>
+    <div class="card">
+      <b>数据侧</b>：稳态检测用滑动窗口 + 假设检验；设最小稳态持续时长，过滤过渡工况；数据先做协调与粗大误差剔除，再做参数估计。
+      <br><b>模型侧</b>：用上一周期解做热启动（warm start），避免冷启动失败；对强非线性单元设合理初值；参数更新加"信任窗口"限制单步幅度，防止模型跳变。
+      <br><b>优化侧</b>：自由度选择宁少勿滥（多一个自由度多一份震荡风险）；约束尽量用软约束 + 罚项保鲁棒；对关键瓶颈用 LP 预规划结构、再用 NLP 精算。
+      <br><b>闭环侧</b>：RTO 目标经合理性校验再下发；与 APC 设定值"对齐"，避免 RTO 与 MPC 打架；建立"投用率/收敛率"KPI 做持续运维。
+      <br><b>组织侧</b>：RTO 是"建得成、更要用得久"——模型维护机制与数据质量治理，比算法本身更决定成败（呼应 2.5 节的落地落差）。
+    </div>
+    <div class="note">
+      本室中文专著《复杂流程系统的实时模拟与优化》（邵之江等）、《大工业过程计算机在线稳态优化控制》（万百五、黄正良）对此技术栈有系统论述，已扫描入库（OCR 检索版整理中）。
+    </div>
+
+    <!-- ============ 参考文献 ============ -->
+    <h2 id="refs">参考文献与行业链接</h2>
+    <h3>行业链接（厂商 / 机构）</h3>
+    <ol class="refs">
+      <li>ARC Advisory Group — <a class="ext" href="https://www.arcweb.com/" target="_blank" rel="noopener">https://www.arcweb.com/</a>（APC/RTO 市场研究与 Perspectives）</li>
+      <li>AVEVA ROMeo — <a class="ext" href="https://www.aveva.com/en/products/romeo/" target="_blank" rel="noopener">https://www.aveva.com/en/products/romeo/</a></li>
+      <li>AspenTech Optimization — <a class="ext" href="https://www.aspentech.com/en/products/optimization" target="_blank" rel="noopener">https://www.aspentech.com/en/products/optimization</a></li>
+      <li>Honeywell Profit Optimizer — <a class="ext" href="https://www.honeywell.com/us/en/products/process/industrial-software/profit-optimizer" target="_blank" rel="noopener">https://www.honeywell.com/.../profit-optimizer</a></li>
+      <li>Yokogawa — <a class="ext" href="https://www.yokogawa.com/" target="_blank" rel="noopener">https://www.yokogawa.com/</a>；Emerson — <a class="ext" href="https://www.emerson.com/" target="_blank" rel="noopener">https://www.emerson.com/</a></li>
+      <li>Plant Engineering — <a class="ext" href="https://www.plantengineering.com/" target="_blank" rel="noopener">https://www.plantengineering.com/</a>；Food Engineering — <a class="ext" href="https://www.foodengineeringmag.com/" target="_blank" rel="noopener">https://www.foodengineeringmag.com/</a></li>
+    </ol>
+
+    <h3>学术参考文献（节选，本室均存档原文或摘要）</h3>
+    <ol class="refs">
+      <li>Biegler L. T. Infeasible path optimization for sequential modular simulators. <i>AIChE J.</i> 1982.</li>
+      <li>Biegler L. T. (series) Reduced Hessian SQP / multiplier-free / interior-point methods. <i>Comput. Chem. Eng.</i> 1983–1999.</li>
+      <li>Shao Z., et al. A computing method for the reduced-space SQP strategies (online optimization). <i>Setpoint</i> 1997; <i>J. Chem. Eng. Japan</i> 1998; <i>Ind. Eng. Chem. Res.</i> 1999.</li>
+      <li>Naysmith M. R. Real-time optimization: closed vs. open form equations. M.Sc., Univ. of Waterloo, 1998.</li>
+      <li>Yip W. S. <i>Model Updating in Real-Time Optimization.</i> Ph.D., McMaster Univ., 2002 (supervisor T. E. Marlin).</li>
+      <li>Marchetti A. G. <i>Modifier-adaptation methodology for real-time optimization.</i> Ph.D., EPFL, 2009.</li>
+      <li>Bonvin D., et al. Real-time optimization via modifier adaptation. EPFL / <i>J. Process Control</i> 等.</li>
+      <li>Matias J. O. A. <i>ROPA: Persistent Parameter Adaptation for RTO.</i> Ph.D., USP, 2018.</li>
+      <li>Carneiro A. A. B. <i>ROPA Online Parameter Estimation.</i> M.Sc., USP, 2020.</li>
+      <li>Câmara M. M. <i>Identification Techniques for RTO.</i> Ph.D., UFRJ, 2018.</li>
+      <li>Santos J. E. W. <i>KPI-Oriented Approach for RTO.</i> Ph.D., UFRGS, 2021.</li>
+      <li>Oliveira da Silva E. <i>Economic MPC + Modifier Adaptation for RTO.</i> Ph.D., Univ. of Valladolid, 2023.</li>
+      <li>Krishnamoorthy D. <i>Novel Approaches to Online Process Optimization Under Uncertainty.</i> Ph.D., NTNU, 2019.</li>
+      <li>Papasavvas A. <i>From RTO Techniques to an Autopilot for Steady-State Processes.</i> Ph.D., Univ. of Edinburgh, 2018.</li>
+      <li>Himmel A. <i>Optimization-based Operation Strategy and Storage Design for Coupled Processes.</i> Dr.-Ing., OvGU Magdeburg, 2021 (Sundmacher/Engell/Sager).</li>
+      <li>Serralunga F. <i>RTO for Industrial Processes and Energy Systems.</i> Ph.D., UNL, 2014.</li>
+      <li>Menezes J. M., Palacio L. M. (USP, 2016/2013) RTO data analysis & Petrobras applications.</li>
+      <li>Liporace L., et al. Petrobras RTO experience. <i>Proc. PSE</i>, 2009.</li>
+      <li>万百五、黄正良.《大工业过程计算机在线稳态优化控制》. </li>
+      <li>邵之江 等.《复杂流程系统的实时模拟与优化》.</li>
+    </ol>
+    <div class="note">
+      说明：上述部分学位论文（Yip 2002、Himmel 2021、Papasavvas 2018 等）PDF 已存入本室 <code>学位论文/</code> 目录并抽取/识别为全文文本，可在本地检索库中按标题或关键词检索。学术文献链接建议以 Google Scholar 检索对应标题获取最新 DOI/全文。
+    </div>
+  </main>
+</div>
+
+<footer>
+  本文为面向过程工业 RTO 技术的内部技术综述，内容基于本室 RTO 专题资料库整理编写（截至 2026-07）。
+  市场数据引自 ARC Advisory Group 及其媒体转述；学术贡献按学派与学位论文一手资料归纳。
+</footer>
+</body>
+</html>
