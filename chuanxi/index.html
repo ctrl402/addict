@@ -31,6 +31,17 @@ footer{max-width:960px;margin:0 auto;padding:20px;font-size:12px;color:#888}
 footer h3{color:#555;font-size:14px}
 footer a{color:#c0392b}
 .note{background:#fff8e1;border-left:4px solid #e67e22;padding:10px 14px;border-radius:8px;font-size:13px;margin:14px 0}
+details.risk{background:#fff;border:1px solid #f0c9a0;border-radius:14px;padding:4px 16px;margin:14px 0;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+details.risk>summary{cursor:pointer;font-size:16px;font-weight:700;color:#c0392b;padding:12px 0;list-style:none;user-select:none}
+details.risk>summary::-webkit-details-marker{display:none}
+details.risk>summary::before{content:"▸ ";display:inline-block;transition:.15s}
+details.risk[open]>summary::before{content:"▾ "}
+.risk-bd{padding:0 4px 12px;font-size:14px;line-height:1.7}
+.risk-bd h4{color:#e67e22;margin:14px 0 6px;font-size:15px}
+.risk-bd ul{margin:6px 0;padding-left:20px}
+.risk-bd li{margin:6px 0}
+.risk-bd .verdict{background:#fff8e1;border-left:4px solid #e67e22;padding:10px 12px;border-radius:8px;margin:4px 0 10px}
+.risk-bd b{color:#c0392b}
 </style></head>
 <body>
 <header>
@@ -39,6 +50,29 @@ footer a{color:#c0392b}
 </header>
 <div class="wrap">
   <div class="note">📷 本页风景照片均来自 <b>Wikimedia Commons</b> 的 CC 授权真实照片，点击图片可查看原图与作者；里程为约数，实际以导航为准。</div>
+  
+<details class="risk" open>
+  <summary>⚠️ 行程松紧与风险提示（点击展开/收起）</summary>
+  <div class="risk-bd">
+    <p class="verdict"><b>结论：</b>里程本身不算赶，但<b>海拔爬升太快、三个点需越野/中转、雨季不确定性</b>三点让行程偏紧，且有真实风险。9 天跑完这个大环线（最远到德格，近西藏边界，单边约 900km）属"紧凑型"，多数人会留 10–12 天。</p>
+    <h4>主要风险</h4>
+    <ul>
+      <li><b>海拔与高反（最大）：</b>D1 还在 1300m（泸定），D2 即翻 4298m 折多山——两天内从成都 500m 冲到 4300m，无适应缓冲日；D8/D9 又连续冲 4500m（冷嘎措/子梅垭口）。前 48 小时与高海拔观景台是高反高发窗。</li>
+      <li><b>雨季塌方 / 堵车（7 月底汛期+旺季）：</b>G318 折多山、G317 甘孜段常堵车；支线（鱼子西/冷嘎措/子梅垭口）多土路，遇雨易塌方或临时封路，且无替代路。</li>
+      <li><b>三个点非轿车可达：</b>鱼子西、冷嘎措、子梅垭口最后几公里需越野车或当地中转车（冷嘎措部分路段还要骑马/背夫），城市 SUV/轿车会卡住。</li>
+      <li><b>D9 返程 425km 偏长：</b>若上午还去里索海/子梅垭口，易变夜路下山，高原夜路无照明、落石多，是全程最危险驾驶段。</li>
+      <li><b>管控与开放时间：</b>亚青寺部分区域禁拍且近年时有管控；德格印经院有开放时段，法会/周一可能闭馆。</li>
+      <li><b>补给：</b>德格→八美(270km)、甘孜→亚青(130km) 沿途加油站稀疏，务必每次加满油、带备胎与常用药。</li>
+    </ul>
+    <h4>建议的缓冲调整</h4>
+    <ul>
+      <li><b>加一个低海拔过渡夜：</b>D1 或 D2 在康定多住一晚，先适应 2500m 再上 4000m+。</li>
+      <li><b>拆分 D7：</b>德格→八美 270km 拆成两段（德格→甘孜住，甘孜→道孚→八美），别在赶路日还塞景点。</li>
+      <li><b>D9 早出发：</b>下午前离开山区避免夜路；或 D8 提前到上木居，D9 纯返程。</li>
+    </ul>
+  </div>
+</details>
+
   <div class="mapbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="-apple-system,Helvetica,Arial,sans-serif">
 <rect width="1000" height="700" fill="#fbfaf6"/>
 <line x1="80" y1="70" x2="80" y2="630" stroke="#eceadf" stroke-width="1"/>
@@ -139,6 +173,7 @@ footer a{color:#c0392b}
 <text x="222" y="667" font-size="12" fill="#444">景区</text>
 <line x1="285" y1="663" x2="325" y2="663" stroke="#d97a25" stroke-width="3" stroke-dasharray="6 4"/>
 <text x="332" y="667" font-size="12" fill="#444">行车路线</text>
+
 <!--MAP_MIL-->
 <text x="518.8" y="446.7" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约130km</text>
 <text x="556.3" y="409.1" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约90km</text>
