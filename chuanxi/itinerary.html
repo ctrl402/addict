@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>川西大环线 9 天行程示意图（真实照片版）</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:#f5f1e8;color:#2b2b2b;line-height:1.7}
+header{background:linear-gradient(135deg,#c0392b,#e67e22);color:#fff;padding:34px 20px;text-align:center}
+header h1{margin:0 0 6px;font-size:26px}
+header p{margin:0;opacity:.92;font-size:14px}
+.wrap{max-width:960px;margin:0 auto;padding:18px}
+.mapbox{background:#fff;border-radius:14px;padding:12px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin:18px 0}
+.mapbox svg{width:100%;height:auto;display:block}
+.day{background:#fff;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+.day-hd{display:flex;gap:14px;align-items:flex-start}
+.badge{background:#c0392b;color:#fff;font-weight:700;border-radius:10px;padding:8px 12px;font-size:16px;white-space:nowrap}
+.day-hd h2{margin:0 0 4px;font-size:18px}
+.meta{font-size:13px;color:#666;display:flex;gap:12px;flex-wrap:wrap}
+.mil{color:#c0392b;font-weight:700}
+.seg{font-size:12px;color:#999;margin-top:4px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:14px 0}
+.ph{margin:0;background:#eee;border-radius:10px;overflow:hidden}
+.ph img{width:100%;height:170px;object-fit:cover;display:block}
+.ph figcaption{font-size:11px;color:#777;padding:6px 8px;line-height:1.4}
+.ph.missing{padding:20px;text-align:center;color:#999;font-size:13px}
+ul.kan{margin:6px 0 0;padding-left:20px;font-size:14px}
+ul.kan li{margin:4px 0}
+footer{max-width:960px;margin:0 auto;padding:20px;font-size:12px;color:#888}
+footer h3{color:#555;font-size:14px}
+footer a{color:#c0392b}
+.note{background:#fff8e1;border-left:4px solid #e67e22;padding:10px 14px;border-radius:8px;font-size:13px;margin:14px 0}
+details.risk{background:#fff;border:1px solid #f0c9a0;border-radius:14px;padding:4px 16px;margin:14px 0;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+details.risk>summary{cursor:pointer;font-size:16px;font-weight:700;color:#c0392b;padding:12px 0;list-style:none;user-select:none}
+details.risk>summary::-webkit-details-marker{display:none}
+details.risk>summary::before{content:"▸ ";display:inline-block;transition:.15s}
+details.risk[open]>summary::before{content:"▾ "}
+.risk-bd{padding:0 4px 12px;font-size:14px;line-height:1.7}
+.risk-bd h4{color:#e67e22;margin:14px 0 6px;font-size:15px}
+.risk-bd ul{margin:6px 0;padding-left:20px}
+.risk-bd li{margin:6px 0}
+.risk-bd .verdict{background:#fff8e1;border-left:4px solid #e67e22;padding:10px 12px;border-radius:8px;margin:4px 0 10px}
+.risk-bd b{color:#c0392b}
+</style></head>
+<body>
+<header>
+  <h1>川西大环线 · 9 天自驾行程</h1>
+  <p>成都双流机场起止 · 2026.7.25–8.2 · 康定环线 / 亚青德格 / 贡嘎山西坡 三大区块</p>
+</header>
+<div class="wrap">
+  <div class="note">📷 本页风景照片均来自 <b>Wikimedia Commons</b> 的 CC 授权真实照片，点击图片可查看原图与作者；里程为约数，实际以导航为准。</div>
+  
+<details class="risk" open>
+  <summary>⚠️ 行程松紧与风险提示（点击展开/收起）</summary>
+  <div class="risk-bd">
+    <p class="verdict"><b>结论：</b>里程本身不算赶，但<b>海拔爬升太快、三个点需越野/中转、雨季不确定性</b>三点让行程偏紧，且有真实风险。9 天跑完这个大环线（最远到德格，近西藏边界，单边约 900km）属"紧凑型"，多数人会留 10–12 天。</p>
+    <h4>主要风险</h4>
+    <ul>
+      <li><b>海拔与高反（最大）：</b>D1 还在 1300m（泸定），D2 即翻 4298m 折多山——两天内从成都 500m 冲到 4300m，无适应缓冲日；D8/D9 又连续冲 4500m（冷嘎措/子梅垭口）。前 48 小时与高海拔观景台是高反高发窗。</li>
+      <li><b>雨季塌方 / 堵车（7 月底汛期+旺季）：</b>G318 折多山、G317 甘孜段常堵车；支线（鱼子西/冷嘎措/子梅垭口）多土路，遇雨易塌方或临时封路，且无替代路。</li>
+      <li><b>三个点非轿车可达：</b>鱼子西、冷嘎措、子梅垭口最后几公里需越野车或当地中转车（冷嘎措部分路段还要骑马/背夫），城市 SUV/轿车会卡住。</li>
+      <li><b>D9 返程 425km 偏长：</b>若上午还去里索海/子梅垭口，易变夜路下山，高原夜路无照明、落石多，是全程最危险驾驶段。</li>
+      <li><b>管控与开放时间：</b>亚青寺部分区域禁拍且近年时有管控；德格印经院有开放时段，法会/周一可能闭馆。</li>
+      <li><b>补给：</b>德格→八美(270km)、甘孜→亚青(130km) 沿途加油站稀疏，务必每次加满油、带备胎与常用药。</li>
+    </ul>
+    <h4>建议的缓冲调整</h4>
+    <ul>
+      <li><b>加一个低海拔过渡夜：</b>D1 或 D2 在康定多住一晚，先适应 2500m 再上 4000m+。</li>
+      <li><b>拆分 D7：</b>德格→八美 270km 拆成两段（德格→甘孜住，甘孜→道孚→八美），别在赶路日还塞景点。</li>
+      <li><b>D9 早出发：</b>下午前离开山区避免夜路；或 D8 提前到上木居，D9 纯返程。</li>
+    </ul>
+  </div>
+</details>
+
+  <div class="mapbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="-apple-system,Helvetica,Arial,sans-serif">
+<rect width="1000" height="700" fill="#fbfaf6"/>
+<line x1="80" y1="70" x2="80" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="160" y1="70" x2="160" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="240" y1="70" x2="240" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="320" y1="70" x2="320" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="400" y1="70" x2="400" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="480" y1="70" x2="480" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="560" y1="70" x2="560" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="640" y1="70" x2="640" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="720" y1="70" x2="720" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="800" y1="70" x2="800" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="880" y1="70" x2="880" y2="630" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="70" x2="920" y2="70" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="150" x2="920" y2="150" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="230" x2="920" y2="230" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="310" x2="920" y2="310" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="390" x2="920" y2="390" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="470" x2="920" y2="470" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="550" x2="920" y2="550" stroke="#eceadf" stroke-width="1"/>
+<line x1="80" y1="630" x2="920" y2="630" stroke="#eceadf" stroke-width="1"/>
+<rect x="610.0" y="344" width="180" height="30" rx="15" fill="#c9d8ea" opacity="0.55"/>
+<text x="700" y="364" font-size="13" fill="#5a5247" text-anchor="middle" font-weight="600">① 康定·新都桥片区</text>
+<rect x="-30.0" y="194" width="180" height="30" rx="15" fill="#e7d6c9" opacity="0.55"/>
+<text x="60" y="214" font-size="13" fill="#5a5247" text-anchor="middle" font-weight="600">② 亚青·德格（西北）</text>
+<rect x="630.0" y="644" width="180" height="30" rx="15" fill="#cfe3d4" opacity="0.55"/>
+<text x="720" y="664" font-size="13" fill="#5a5247" text-anchor="middle" font-weight="600">③ 贡嘎山西坡</text>
+<text x="80" y="38" font-size="22" font-weight="700" fill="#2b2b2b">川西大环线 · 成都双流起止 9 天行程示意图</text>
+<text x="80" y="60" font-size="13" fill="#7a7264">2026.7.25–8.2 ｜ 红线=住宿 D1–D9（各点后附里程）｜ 蓝点=景区 ｜ 橙虚线=行车路线 ｜ 总里程约 2100km</text>
+<polyline points="897.9,344.2 644.4,471.7 604.6,446.6 578.1,450.4 536.8,442.7 544.2,462.0 538.3,404.1 588.4,456.2 581.1,460.1 485.3,384.8 360.0,185.9 315.8,143.4 153.7,243.8 106.5,104.8 485.3,384.8 536.8,442.7 604.6,446.6 578.1,562.4 603.2,610.7 581.1,581.7 578.1,591.4 584.0,606.8 604.6,446.6 644.4,471.7 897.9,344.2" fill="none" stroke="#d97a25" stroke-width="3" stroke-dasharray="9 6" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+<polygon points="771.15,407.95 775.1,402.2 778.1,408.2" fill="#d97a25" opacity="0.9"/>
+<polygon points="557.45,446.54999999999995 564.1,444.4 562.9,451.0" fill="#d97a25" opacity="0.9"/>
+<polygon points="563.3499999999999,430.15 556.7,428.0 561.5,423.4" fill="#d97a25" opacity="0.9"/>
+<polygon points="422.65,285.35 428.8,288.8 423.1,292.3" fill="#d97a25" opacity="0.9"/>
+<polygon points="130.1,174.3 135.3,179.0 128.9,181.2" fill="#d97a25" opacity="0.9"/>
+<polygon points="570.7,444.65 564.4,447.6 564.8,440.9" fill="#d97a25" opacity="0.9"/>
+<polygon points="592.1500000000001,596.2 598.5,599.1 593.2,603.1" fill="#d97a25" opacity="0.9"/>
+<polygon points="594.3,526.7 596.8,533.2 590.2,532.4" fill="#d97a25" opacity="0.9"/>
+<circle cx="897.9" cy="344.2" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="897.9" y="348.7" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D9</text>
+<text x="885.9" y="348.2" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">成都双流机场</text>
+<circle cx="644.4" cy="471.7" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="644.4" y="476.2" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D1</text>
+<text x="660.4" y="457.7" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">泸定·泸定桥</text>
+<text x="660.4" y="475.7" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 双流→泸定 约230km</text>
+<circle cx="604.6" cy="446.6" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="592.6" y="438.6" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">康定</text>
+<circle cx="578.1" cy="450.4" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="592.1" y="446.4" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">折多山垭口</text>
+<circle cx="536.8" cy="442.7" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="536.8" y="447.2" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D2</text>
+<text x="550.8" y="446.7" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">新都桥</text>
+<circle cx="544.2" cy="462.0" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="558.2" y="478.0" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">鱼子西</text>
+<circle cx="538.3" cy="404.1" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="538.3" y="408.6" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D3</text>
+<text x="526.3" y="394.1" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">塔公草原</text>
+<circle cx="588.4" cy="456.2" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="602.4" y="464.2" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">居里寺</text>
+<circle cx="581.1" cy="460.1" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="595.1" y="482.1" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">降布神山</text>
+<circle cx="485.3" cy="384.8" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="485.3" y="389.3" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D7</text>
+<text x="473.3" y="374.8" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">八美·墨石公园</text>
+<circle cx="315.8" cy="143.4" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="315.8" y="147.9" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D4</text>
+<text x="329.8" y="137.4" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">甘孜</text>
+<circle cx="153.7" cy="243.8" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="153.7" y="248.3" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D5</text>
+<text x="167.7" y="247.8" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">亚青寺</text>
+<circle cx="106.5" cy="104.8" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="106.5" y="109.3" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D6</text>
+<text x="120.5" y="98.8" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">德格印经院</text>
+<circle cx="603.2" cy="610.7" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="617.2" y="640.7" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">贡嘎山镇</text>
+<circle cx="581.1" cy="581.7" r="15" fill="#e23b3b" stroke="#ffffff" stroke-width="2.5"/>
+<text x="581.1" y="586.2" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">D8</text>
+<text x="597.1" y="567.7" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">冷嘎措</text>
+<circle cx="578.1" cy="591.4" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="594.1" y="593.4" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">里索海</text>
+<circle cx="584.0" cy="606.8" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="600.0" y="624.8" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">子梅垭口</text>
+<circle cx="529.5" cy="475.5" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="517.5" y="491.5" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">甲根坝</text>
+<circle cx="578.1" cy="562.4" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="594.1" y="596.4" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">玉龙西</text>
+<circle cx="360.0" cy="185.9" r="5" fill="#1f5fae" stroke="#ffffff" stroke-width="1.5"/>
+<text x="374.0" y="179.9" font-size="12.5" font-weight="600" fill="#1f5fae" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">卡萨湖</text>
+<g transform="translate(950,100)">
+<line x1="0" y1="18" x2="0" y2="-14" stroke="#555" stroke-width="2"/>
+<polygon points="0,-20 -5,-8 5,-8" fill="#555"/>
+<text x="0" y="34" font-size="12" fill="#555" text-anchor="middle" font-weight="700">N</text>
+</g>
+<rect x="80" y="648" width="360" height="30" rx="6" fill="#ffffff" stroke="#e0ddd2" opacity="0.95"/>
+<circle cx="98" cy="663" r="9" fill="#e23b3b" stroke="#fff" stroke-width="2"/>
+<text x="112" y="667" font-size="12" fill="#444">住宿 D1–D9</text>
+<circle cx="210" cy="663" r="5" fill="#1f5fae" stroke="#fff" stroke-width="1.5"/>
+<text x="222" y="667" font-size="12" fill="#444">景区</text>
+<line x1="285" y1="663" x2="325" y2="663" stroke="#d97a25" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="332" y="667" font-size="12" fill="#444">行车路线</text>
+
+
+<!--MAP_MIL-->
+<text x="518.8" y="446.7" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约130km</text>
+<text x="556.3" y="409.1" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约90km</text>
+<text x="297.8" y="147.4" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约245km</text>
+<text x="135.7" y="247.8" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约130km</text>
+<text x="88.5" y="108.8" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约150km</text>
+<text x="503.3" y="388.8" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约270km</text>
+<text x="563.1" y="585.7" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约90km</text>
+<text x="897.9" y="372.2" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle" style="paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;">↳ 约425km</text>
+<!--/MAP_MIL-->
+</svg></div>
+  
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D1</span>
+    <div>
+      <h2>双流机场 → 泸定</h2>
+      <div class="meta"><span class="date">7.25</span>
+        <span class="mil">🚗 约 230 km</span>
+        <span class="stay">🛏 住 泸定</span></div>
+      <div class="seg">双流机场→雅康高速→泸定（约230km）</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Luding_Bridge_from_the_east_%2820260205115648%29.jpg/1280px-Luding_Bridge_from_the_east_%2820260205115648%29.jpg" alt="泸定桥" onerror="this.parentNode.style.display='none'"><figcaption>泸定桥 · 摄影 N509FZ · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 <a href="https://commons.wikimedia.org/wiki/File:Luding_Bridge_from_the_east_(20260205115648).jpg" target="_blank" rel="noopener" title="来源：N509FZ / CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>泸定桥</b>：横跨大渡河的红军铁索桥，13根铁链悬于惊涛之上，感受「大渡桥横铁索寒」；桥畔大渡河峡谷气势逼人。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D2</span>
+    <div>
+      <h2>泸定 → 康定 → 折多山 → 新都桥</h2>
+      <div class="meta"><span class="date">7.26</span>
+        <span class="mil">🚗 约 130 km</span>
+        <span class="stay">🛏 住 新都桥</span></div>
+      <div class="seg">泸定→康定(50)→折多山垭口(40)→新都桥(40)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/%E5%B7%8D%E5%B7%8D%E6%8A%98%E5%A4%9A%E5%B1%B1_-_Majestic_Zheduo_Mountain_-_2012.10_-_panoramio.jpg/1280px-%E5%B7%8D%E5%B7%8D%E6%8A%98%E5%A4%9A%E5%B1%B1_-_Majestic_Zheduo_Mountain_-_2012.10_-_panoramio.jpg" alt="折多山垭口" onerror="this.parentNode.style.display='none'"><figcaption>折多山垭口 · 摄影 rheins · CC BY 3.0
+https://creativecommons.org/licenses/by/3.0 <a href="https://commons.wikimedia.org/wiki/File:%E5%B7%8D%E5%B7%8D%E6%8A%98%E5%A4%9A%E5%B1%B1_-_Majestic_Zheduo_Mountain_-_2012.10_-_panoramio.jpg" target="_blank" rel="noopener" title="来源：rheins / CC BY 3.0
+https://creativecommons.org/licenses/by/3.0">↗原图</a></figcaption></figure><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/%E6%96%B0%E9%83%BD%E6%A1%A5%E7%BE%8E%E6%99%AF_-_Scenary_of_Xinduqiao_Town_-_2012.10_-_panoramio.jpg/1280px-%E6%96%B0%E9%83%BD%E6%A1%A5%E7%BE%8E%E6%99%AF_-_Scenary_of_Xinduqiao_Town_-_2012.10_-_panoramio.jpg" alt="新都桥" onerror="this.parentNode.style.display='none'"><figcaption>新都桥 · 摄影 rheins · CC BY 3.0
+https://creativecommons.org/licenses/by/3.0 <a href="https://commons.wikimedia.org/wiki/File:%E6%96%B0%E9%83%BD%E6%A1%A5%E7%BE%8E%E6%99%AF_-_Scenary_of_Xinduqiao_Town_-_2012.10_-_panoramio.jpg" target="_blank" rel="noopener" title="来源：rheins / CC BY 3.0
+https://creativecommons.org/licenses/by/3.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>折多山垭口</b>：康藏第一关，海拔4298m，经幡漫天、雪峰在望，翻过此山便正式进入藏区。</li><li><b>新都桥</b>：「摄影家天堂」，秋日白杨、藏寨、光影与雪山同框，随手一拍即是大片。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D3</span>
+    <div>
+      <h2>新都桥 → 鱼子西 → 塔公 → 居里寺</h2>
+      <div class="meta"><span class="date">7.27</span>
+        <span class="mil">🚗 约 90 km</span>
+        <span class="stay">🛏 住 塔公</span></div>
+      <div class="seg">新都桥→鱼子西(35)→塔公(40)→居里寺(15)→塔公</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Minya_Konka%2C_from_the_west..jpg/1280px-Minya_Konka%2C_from_the_west..jpg" alt="鱼子西" onerror="this.parentNode.style.display='none'"><figcaption>鱼子西 · 摄影 LOwens · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 <a href="https://commons.wikimedia.org/wiki/File:Minya_Konka,_from_the_west..jpg" target="_blank" rel="noopener" title="来源：LOwens / CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0">↗原图</a></figcaption></figure><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Jinlong_Gompa_monastery_a_Zhara_Lhatse_massif.jpg/1280px-Jinlong_Gompa_monastery_a_Zhara_Lhatse_massif.jpg" alt="塔公草原" onerror="this.parentNode.style.display='none'"><figcaption>塔公草原 · 摄影 Honza.jerman · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 <a href="https://commons.wikimedia.org/wiki/File:Jinlong_Gompa_monastery_a_Zhara_Lhatse_massif.jpg" target="_blank" rel="noopener" title="来源：Honza.jerman / CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0">↗原图</a></figcaption></figure><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dzongsar_Monastery_01.jpg/1280px-Dzongsar_Monastery_01.jpg" alt="宗萨寺（木雅地区藏传寺院·实景参考）" onerror="this.parentNode.style.display='none'"><figcaption>宗萨寺（木雅地区藏传寺院·实景参考） · 摄影 ottmarliebert.com from Santa Fe, Turtle Island · CC BY-SA 2.0
+https://creativecommons.org/licenses/by-sa/2.0 <a href="https://commons.wikimedia.org/wiki/File:Dzongsar_Monastery_01.jpg" target="_blank" rel="noopener" title="来源：ottmarliebert.com from Santa Fe, Turtle Island / CC BY-SA 2.0
+https://creativecommons.org/licenses/by-sa/2.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>鱼子西</b>：小众观贡嘎日落点，日照金山染红主峰，人少机位好，直面蜀山之王。</li><li><b>塔公草原</b>：「菩萨喜欢的地方」，雅拉雪山作背景，木雅金塔与经幡相映成画。</li><li><b>居里寺·降布神山</b>：静谧的木雅寺庙，转山朝圣降布神山，游客极少、氛围纯粹。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D4</span>
+    <div>
+      <h2>塔公 → 八美(墨石) → 卡萨湖 → 甘孜</h2>
+      <div class="meta"><span class="date">7.28</span>
+        <span class="mil">🚗 约 245 km</span>
+        <span class="stay">🛏 住 甘孜</span></div>
+      <div class="seg">塔公→八美墨石(65)→卡萨湖(90)→甘孜(90)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Bamei_Village_-_panoramio.jpg/1280px-Bamei_Village_-_panoramio.jpg" alt="八美镇风光（墨石公园所在镇·实景参考）" onerror="this.parentNode.style.display='none'"><figcaption>八美镇风光（墨石公园所在镇·实景参考） · 摄影 Anders Johnson · cc-by-3.0 <a href="https://commons.wikimedia.org/wiki/File:Bamei_Village_-_panoramio.jpg" target="_blank" rel="noopener" title="来源：Anders Johnson / cc-by-3.0">↗原图</a></figcaption></figure><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/%E5%8D%A1%E8%90%A8%E6%B9%96.jpg/1280px-%E5%8D%A1%E8%90%A8%E6%B9%96.jpg" alt="卡萨湖" onerror="this.parentNode.style.display='none'"><figcaption>卡萨湖 · 摄影 麦丝鱿鱼 · cc-by-sa-4.0 <a href="https://commons.wikimedia.org/wiki/File:%E5%8D%A1%E8%90%A8%E6%B9%96.jpg" target="_blank" rel="noopener" title="来源：麦丝鱿鱼 / cc-by-sa-4.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>墨石公园</b>：世界独有的糜棱岩石林，灰黑峰林如异星地表，阴天更显奇幻。</li><li><b>卡萨湖</b>：高原圣湖，水平如镜倒映群山，候鸟栖息，藏民心中的水神之地。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D5</span>
+    <div>
+      <h2>甘孜 → 亚青寺</h2>
+      <div class="meta"><span class="date">7.29</span>
+        <span class="mil">🚗 约 130 km</span>
+        <span class="stay">🛏 住 亚青/白玉</span></div>
+      <div class="seg">甘孜→亚青寺(130)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/%E7%99%BD%E7%8E%89%E8%BE%BE%E5%94%90%E5%AF%BA_-_panoramio.jpg" alt="白玉县达唐寺（亚青寺同域藏传寺院·实景参考）" onerror="this.parentNode.style.display='none'"><figcaption>白玉县达唐寺（亚青寺同域藏传寺院·实景参考） · 摄影 neverdance · cc-by-sa-3.0 <a href="https://commons.wikimedia.org/wiki/File:%E7%99%BD%E7%8E%89%E8%BE%BE%E5%94%90%E5%AF%BA_-_panoramio.jpg" target="_blank" rel="noopener" title="来源：neverdance / cc-by-sa-3.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>亚青寺</b>：「觉姆之城」，数万红色木屋漫布昌曲河心岛，世界最大女性修行地之一，晨雾极美。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D6</span>
+    <div>
+      <h2>亚青 → 德格</h2>
+      <div class="meta"><span class="date">7.30</span>
+        <span class="mil">🚗 约 150 km</span>
+        <span class="stay">🛏 住 德格</span></div>
+      <div class="seg">亚青→德格(150)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Parkhang%2C_Deg%C3%A9%2C_Kham.jpg/1280px-Parkhang%2C_Deg%C3%A9%2C_Kham.jpg" alt="德格印经院" onerror="this.parentNode.style.display='none'"><figcaption>德格印经院 · 摄影 Ljbonner · cc-by-sa-4.0 <a href="https://commons.wikimedia.org/wiki/File:Parkhang,_Deg%C3%A9,_Kham.jpg" target="_blank" rel="noopener" title="来源：Ljbonner / cc-by-sa-4.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>德格印经院</b>：藏文化百科全书，数十万块古印版手工刷印，活着的雕版印刷非遗。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D7</span>
+    <div>
+      <h2>德格 → 甘孜 → 道孚 → 八美</h2>
+      <div class="meta"><span class="date">7.31</span>
+        <span class="mil">🚗 约 270 km</span>
+        <span class="stay">🛏 住 八美</span></div>
+      <div class="seg">德格→甘孜(110)→道孚(90)→八美(70)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Daofuminju.jpg/1280px-Daofuminju.jpg" alt="道孚崩科藏房" onerror="this.parentNode.style.display='none'"><figcaption>道孚崩科藏房 · 摄影 user:munford · cc-by-sa-2.5 <a href="https://commons.wikimedia.org/wiki/File:Daofuminju.jpg" target="_blank" rel="noopener" title="来源：user:munford / cc-by-sa-2.5">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>道孚崩科藏房</b>：白墙红木的藏式民居，石木抗震结构巧夺天工，高原建筑奇观。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D8</span>
+    <div>
+      <h2>八美 → 甲根坝 → 玉龙西 → 冷嘎措</h2>
+      <div class="meta"><span class="date">8.1</span>
+        <span class="mil">🚗 约 90 km</span>
+        <span class="stay">🛏 住 上木居(西坡)</span></div>
+      <div class="seg">八美→甲根坝(45)→玉龙西(20)→上木居(15)→冷嘎措</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/%E8%B4%A1%E5%98%8E.jpg/1280px-%E8%B4%A1%E5%98%8E.jpg" alt="贡嘎雪山（冷嘎措对望的蜀山之王·实景参考）" onerror="this.parentNode.style.display='none'"><figcaption>贡嘎雪山（冷嘎措对望的蜀山之王·实景参考） · 摄影 xin.tang · cc-by-sa-4.0 <a href="https://commons.wikimedia.org/wiki/File:%E8%B4%A1%E5%98%8E.jpg" target="_blank" rel="noopener" title="来源：xin.tang / cc-by-sa-4.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>冷嘎措</b>：贡嘎最佳倒影湖，镜面雪山、星空与日照金山「三连击」，需越野/中转车上山。</li></ul>
+</section>
+<section class="day">
+  <div class="day-hd">
+    <span class="badge">D9</span>
+    <div>
+      <h2>上木居 → 里索海 → 子梅垭口 → 返程</h2>
+      <div class="meta"><span class="date">8.2</span>
+        <span class="mil">🚗 约 425 km</span>
+        <span class="stay">🛏 住 成都</span></div>
+      <div class="seg">上木居→里索海(10)→子梅垭口(15)→康定(120)→泸定(50)→双流(230)</div>
+    </div>
+  </div>
+  <div class="gallery"><figure class="ph"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/%E8%B4%A1%E5%98%8E%E5%B1%B1.jpg/1280px-%E8%B4%A1%E5%98%8E%E5%B1%B1.jpg" alt="贡嘎雪山（子梅垭口正面直视的主峰·实景参考）" onerror="this.parentNode.style.display='none'"><figcaption>贡嘎雪山（子梅垭口正面直视的主峰·实景参考） · 摄影 FrozenNeptune · cc-by-sa-4.0 <a href="https://commons.wikimedia.org/wiki/File:%E8%B4%A1%E5%98%8E%E5%B1%B1.jpg" target="_blank" rel="noopener" title="来源：FrozenNeptune / cc-by-sa-4.0">↗原图</a></figcaption></figure></div>
+  <ul class="kan"><li><b>子梅垭口·里索海</b>：4500m 正面直视贡嘎主峰，云海翻涌；里索海近观冰川与倒影，环线收官之作。</li></ul>
+</section>
+</div>
+<footer>
+  <h3>图片致谢（Wikimedia Commons，CC 授权）</h3>
+  <ul><li><a href="https://commons.wikimedia.org/wiki/File:Luding_Bridge_from_the_east_(20260205115648).jpg" target="_blank" rel="noopener">File:Luding Bridge from the east (20260205115648).jpg</a> — 作者 N509FZ · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E5%B7%8D%E5%B7%8D%E6%8A%98%E5%A4%9A%E5%B1%B1_-_Majestic_Zheduo_Mountain_-_2012.10_-_panoramio.jpg" target="_blank" rel="noopener">File:巍巍折多山 - Majestic Zheduo Mountain - 2012.10 - panoramio.jpg</a> — 作者 rheins · CC BY 3.0
+https://creativecommons.org/licenses/by/3.0 · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E6%96%B0%E9%83%BD%E6%A1%A5%E7%BE%8E%E6%99%AF_-_Scenary_of_Xinduqiao_Town_-_2012.10_-_panoramio.jpg" target="_blank" rel="noopener">File:新都桥美景 - Scenary of Xinduqiao Town - 2012.10 - panoramio.jpg</a> — 作者 rheins · CC BY 3.0
+https://creativecommons.org/licenses/by/3.0 · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Minya_Konka,_from_the_west..jpg" target="_blank" rel="noopener">File:Minya Konka, from the west..jpg</a> — 作者 LOwens · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Jinlong_Gompa_monastery_a_Zhara_Lhatse_massif.jpg" target="_blank" rel="noopener">File:Jinlong Gompa monastery a Zhara Lhatse massif.jpg</a> — 作者 Honza.jerman · CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Dzongsar_Monastery_01.jpg" target="_blank" rel="noopener">File:Dzongsar Monastery 01.jpg</a> — 作者 ottmarliebert.com from Santa Fe, Turtle Island · CC BY-SA 2.0
+https://creativecommons.org/licenses/by-sa/2.0 · <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Bamei_Village_-_panoramio.jpg" target="_blank" rel="noopener">File:Bamei Village - panoramio.jpg</a> — 作者 Anders Johnson · cc-by-3.0 · <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E5%8D%A1%E8%90%A8%E6%B9%96.jpg" target="_blank" rel="noopener">File:卡萨湖.jpg</a> — 作者 麦丝鱿鱼 · cc-by-sa-4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E7%99%BD%E7%8E%89%E8%BE%BE%E5%94%90%E5%AF%BA_-_panoramio.jpg" target="_blank" rel="noopener">File:白玉达唐寺 - panoramio.jpg</a> — 作者 neverdance · cc-by-sa-3.0 · <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Parkhang,_Deg%C3%A9,_Kham.jpg" target="_blank" rel="noopener">File:Parkhang, Degé, Kham.jpg</a> — 作者 Ljbonner · cc-by-sa-4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Daofuminju.jpg" target="_blank" rel="noopener">File:Daofuminju.jpg</a> — 作者 user:munford · cc-by-sa-2.5 · <a href="https://creativecommons.org/licenses/by-sa/2.5" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E8%B4%A1%E5%98%8E.jpg" target="_blank" rel="noopener">File:贡嘎.jpg</a> — 作者 xin.tang · cc-by-sa-4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:%E8%B4%A1%E5%98%8E%E5%B1%B1.jpg" target="_blank" rel="noopener">File:贡嘎山.jpg</a> — 作者 FrozenNeptune · cc-by-sa-4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">许可</a></li></ul>
+  <p>路线与里程为旅行规划参考，非官方数据；高海拔自驾请注意车况、天气与高原反应。</p>
+</footer>
+</body></html>
